@@ -41,9 +41,5 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
-
-# local database & uploads
 *.db
-*.db-journal
-dev.db
-/public/uploads
+public/uploads/

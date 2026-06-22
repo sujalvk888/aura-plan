@@ -3,21 +3,30 @@
 import { redirect } from 'next/navigation';
 import { createRoom } from '@/lib/db';
 import { getHostSession } from '@/lib/auth';
-import { put } from '@vercel/blob';
+import fs from 'fs';
+import path from 'path';
 
 async function saveFileLocally(file: File | null): Promise<string> {
   if (!file || file.size === 0) return '';
   
+  const bytes = await file.arrayBuffer();
+  const buffer = Buffer.from(bytes);
+  
+  // Create a unique filename
   const ext = file.name.split('.').pop() || 'png';
   const filename = `${Date.now()}_${Math.random().toString(36).substring(2, 9)}.${ext}`;
   
-  try {
-    const blob = await put(`rooms/${filename}`, file, { access: 'public' });
-    return blob.url;
-  } catch (error) {
-    console.error("Failed to upload to Vercel Blob", error);
-    return '';
+  // Ensure the directory exists
+  const uploadDir = path.join(process.cwd(), 'public/uploads/rooms');
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
   }
+  
+  const filePath = path.join(uploadDir, filename);
+  fs.writeFileSync(filePath, buffer);
+  
+  // Return the public URL path
+  return `/uploads/rooms/${filename}`;
 }
 
 export async function addRoom(propertyId: string, formData: FormData) {
