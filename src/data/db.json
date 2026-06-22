@@ -1,0 +1,133 @@
+{
+  "hosts": [
+    {
+      "name": "Sujal V Kanchan",
+      "email": "sujalkanchan28@gmail.com",
+      "passwordHash": "sujal123",
+      "id": "host_1782102934588_cc1h5k6o6",
+      "createdAt": "2026-06-22T04:35:34.588Z"
+    }
+  ],
+  "properties": [
+    {
+      "hostId": "host_1782102934588_cc1h5k6o6",
+      "name": "Modern Villa",
+      "type": "Villa",
+      "description": "good",
+      "address": "123 Main Street, City, Country",
+      "city": "Kundapura",
+      "state": "Karnataka",
+      "country": "India",
+      "id": "prop_1782103510089_gbm6ub06q",
+      "createdAt": "2026-06-22T04:45:10.089Z"
+    },
+    {
+      "hostId": "host_1782102934588_cc1h5k6o6",
+      "name": "Modern Villa",
+      "type": "House",
+      "description": "fbgnyytbrvc",
+      "address": "123 Main Street, City, Country",
+      "city": "Kundapura",
+      "state": "Karnataka",
+      "country": "India",
+      "id": "prop_1782105961330_9atia2x6c",
+      "createdAt": "2026-06-22T05:26:01.330Z"
+    }
+  ],
+  "rooms": [
+    {
+      "propertyId": "prop_1782103010522_yy0k19rww",
+      "name": "bedroom",
+      "dimensions": {
+        "width": 25,
+        "length": 35,
+        "height": 12
+      },
+      "viewHeight": 5.91,
+      "surfaces": {
+        "front": "https://pihttps://img.freepik.com/premium-photo/beds-contemporary-bedroom-front-view-warm-home-styled-apartment_872147-44264.jpgcsum.photos/seed/front/1024/1024",
+        "back": "hhttps://th.bing.com/th/id/R.dcc3ae61612b84856fe076c27fbdc136?rik=jUQakivQ6%2fxXpA&riu=http%3a%2f%2f2.bp.blogspot.com%2f-mgu7q4tdau4%2fUyQVM4zhEEI%2fAAAAAAAAFTk%2fWRFQrXBWDz0%2fs1600%2fSmooth_stucco_flat_white_paint_plaster_wall_texture_seamless_tileable.jpg&ehk=hGV6heXpY%2fE9rHr7H9Y6BovOmC6oR2pvQQkpnH4FGgM%3d&risl=&pid=ImgRaw&r=0ttps://picsum.photos/seed/back/1024/1024",
+        "left": "https://picsum.photoshttps://th.bing.com/th/id/R.dcc3ae61612b84856fe076c27fbdc136?rik=jUQakivQ6%2fxXpA&riu=http%3a%2f%2f2.bp.blogspot.com%2f-mgu7q4tdau4%2fUyQVM4zhEEI%2fAAAAAAAAFTk%2fWRFQrXBWDz0%2fs1600%2fSmooth_stucco_flat_white_paint_plaster_wall_texture_seamless_tileable.jpg&ehk=hGV6heXpY%2fE9rHr7H9Y6BovOmC6oR2pvQQkpnH4FGgM%3d&risl=&pid=ImgRaw&r=0/seed/left/1024/1024",
+        "right": "https://https://th.bing.com/th/id/R.dcc3ae61612b84856fe076c27fbdc136?rik=jUQakivQ6%2fxXpA&riu=http%3a%2f%2f2.bp.blogspot.com%2f-mgu7q4tdau4%2fUyQVM4zhEEI%2fAAAAAAAAFTk%2fWRFQrXBWDz0%2fs1600%2fSmooth_stucco_flat_white_paint_plaster_wall_texture_seamless_tileable.jpg&ehk=hGV6heXpY%2fE9rHr7H9Y6BovOmC6oR2pvQQkpnH4FGgM%3d&risl=&pid=ImgRaw&r=0picsum.photos/seed/right/1024/1024",
+        "ceiling": "https://picsum.phohttps://tse2.mm.bing.net/th/id/OIP.mEJ4jbmfESgvZrAWC20UDwHaHa?w=570&h=570&rs=1&pid=ImgDetMain&o=7&rm=3tos/seed/ceiling/1024/1024",
+        "floor": "httphttps://tse2.mm.bing.net/th/id/OIP.PFWMBdjKgdwaZ43TF9gMCQHaFL?rs=1&pid=ImgDetMain&o=7&rm=3s://picsum.photos/seed/floor/1024/1024"
+      },
+      "id": "room_1782104766278_8rlqhcndt",
+      "status": "draft",
+      "createdAt": "2026-06-22T05:06:06.278Z"
+    },
+    {
+      "propertyId": "prop_1782105961330_9atia2x6c",
+      "name": "bedroom",
+      "dimensions": {
+        "width": 15,
+        "length": 20,
+        "height": 10
+      },
+      "viewHeight": 5.91,
+      "surfaces": {
+        "front": "https://jooinn.com/images/wooden-floor-texture-5.jpg",
+        "back": "https://jooinn.com/images/wooden-floor-texture-5.jpg",
+        "left": "https://jooinn.com/images/wooden-floor-texture-5.jpg",
+        "right": "https://jooinn.com/images/wooden-floor-texture-5.jpg",
+        "ceiling": "https://jooinn.com/images/wooden-floor-texture-5.jpg",
+        "floor": "https://jooinn.com/images/wooden-floor-texture-5.jpg"
+      },
+      "id": "room_1782106104945_y2cyxen67",
+      "status": "draft",
+      "createdAt": "2026-06-22T05:28:24.945Z"
+    },
+    {
+      "propertyId": "prop_1782103510089_gbm6ub06q",
+      "name": "Living Room",
+      "dimensions": {
+        "width": 20,
+        "length": 30,
+        "height": 12
+      },
+      "viewingHeight": 5.916666666666667,
+      "surfaces": {
+        "front": "/uploads/rooms/1782106942976_vyp3p6l.webp",
+        "back": "/uploads/rooms/1782106942978_4zvfrx4.webp",
+        "left": "/uploads/rooms/1782106942980_ou6h4w7.webp",
+        "right": "/uploads/rooms/1782106942982_e77i1ho.webp",
+        "ceiling": "/uploads/rooms/1782106942984_yegwj5a.webp",
+        "floor": "/uploads/rooms/1782106942986_mbu175k.jpg"
+      },
+      "id": "room_1782106942989_01x234jzt",
+      "createdAt": "2026-06-22T05:42:22.989Z",
+      "hotspots": [
+        {
+          "position": [
+            -10.000000000000002,
+            -0.5306493232077062,
+            -9.870703085353568
+          ],
+          "targetRoomId": "room_1782109294657_rly64me7m",
+          "label": "To Living Room",
+          "id": "hotspot_1782110054465_j0o67j5oh"
+        }
+      ]
+    },
+    {
+      "propertyId": "prop_1782103510089_gbm6ub06q",
+      "name": "Living Room",
+      "dimensions": {
+        "width": 30,
+        "length": 40,
+        "height": 20
+      },
+      "viewingHeight": 5.916666666666667,
+      "surfaces": {
+        "front": "/uploads/rooms/1782109294650_t74dsp4.png",
+        "back": "/uploads/rooms/1782109294646_l3d6sz8.jpg",
+        "left": "/uploads/rooms/1782109294638_b2kcj3a.webp",
+        "right": "/uploads/rooms/1782109294644_xape54k.jpg",
+        "ceiling": "/uploads/rooms/1782109294642_fpf8mkk.webp",
+        "floor": "/uploads/rooms/1782109294653_75iopd4.jpg"
+      },
+      "id": "room_1782109294657_rly64me7m",
+      "createdAt": "2026-06-22T06:21:34.657Z"
+    }
+  ]
+}

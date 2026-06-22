@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Host {
+  id         String     @id @default(uuid())
+  email      String     @unique
+  name       String
+  password   String
+  avatarUrl  String?
+  bio        String?
+  properties Property[]
+}
+
+model User {
+  id        String     @id @default(uuid())
+  email     String     @unique
+  name      String
+  password  String
+  avatarUrl String?
+  createdAt DateTime   @default(now())
+  wishlists Wishlist[]
+}
+
+model Property {
+  id            String   @id @default(uuid())
+  hostId        String
+  host          Host     @relation(fields: [hostId], references: [id], onDelete: Cascade)
+  name          String
+  type          String
+  description   String
+  address       String
+  city          String
+  state         String
+  country       String
+  isPublished   Boolean  @default(false)
+  coverImageUrl String?
+  createdAt     DateTime   @default(now())
+  rooms         Room[]
+  wishlists     Wishlist[]
+}
+
+model Wishlist {
+  id         String   @id @default(uuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  propertyId String
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+
+  @@unique([userId, propertyId])
+}
+
+model Room {
+  id            String    @id @default(uuid())
+  propertyId    String
+  property      Property  @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  name          String
+  
+  // Dimensions
+  width         Float
+  length        Float
+  height        Float
+  viewingHeight Float     @default(1.6)
+
+  // Surfaces URLs
+  front         String
+  back          String
+  left          String
+  right         String
+  ceiling       String
+  floor         String
+
+  hotspots      Hotspot[]
+}
+
+model Hotspot {
+  id           String @id @default(uuid())
+  roomId       String
+  room         Room   @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  
+  // Position
+  x            Float
+  y            Float
+  z            Float
+
+  targetRoomId String
+  label        String
+}
