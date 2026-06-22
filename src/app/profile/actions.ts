@@ -3,8 +3,7 @@
 import { prisma } from "@/lib/db";
 import { getUserSession } from "@/lib/userAuth";
 import { revalidatePath } from "next/cache";
-import { writeFile } from 'fs/promises';
-import path from 'path';
+import { put } from '@vercel/blob';
 
 export async function updateProfile(formData: FormData) {
   const user = await getUserSession();
@@ -22,17 +21,9 @@ export async function updateProfile(formData: FormData) {
   let avatarUrl = user.avatarUrl;
   
   if (avatarFile && avatarFile.size > 0) {
-    const bytes = await avatarFile.arrayBuffer();
-    const buffer = Buffer.from(bytes);
     const fileName = `${Date.now()}-${avatarFile.name.replace(/\s+/g, '-')}`;
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'avatars');
-    
-    // Create dir if not exists
-    await import('fs').then(fs => fs.promises.mkdir(uploadDir, { recursive: true }).catch(() => {}));
-    
-    const filePath = path.join(uploadDir, fileName);
-    await writeFile(filePath, buffer);
-    avatarUrl = `/uploads/avatars/${fileName}`;
+    const blob = await put(`avatars/${fileName}`, avatarFile, { access: 'public' });
+    avatarUrl = blob.url;
   }
 
   await prisma.user.update({

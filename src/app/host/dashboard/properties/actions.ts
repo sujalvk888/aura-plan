@@ -3,19 +3,13 @@
 import { redirect } from 'next/navigation';
 import { createProperty, updateProperty, deleteProperty } from '@/lib/db';
 import { getHostSession } from '@/lib/auth';
-import { writeFile } from 'fs/promises';
-import path from 'path';
+import { put } from '@vercel/blob';
 
 async function processCoverImage(file: File | null): Promise<string | undefined> {
   if (!file || file.size === 0) return undefined;
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-  const fileName = `${Date.now()}-property-${file.name.replace(/\s+/g, '-')}`;
-  const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'properties');
-  await import('fs').then(fs => fs.promises.mkdir(uploadDir, { recursive: true }).catch(() => {}));
-  const filePath = path.join(uploadDir, fileName);
-  await writeFile(filePath, buffer);
-  return `/uploads/properties/${fileName}`;
+  const fileName = `properties/${Date.now()}-property-${file.name.replace(/\s+/g, '-')}`;
+  const blob = await put(fileName, file, { access: 'public' });
+  return blob.url;
 }
 
 export async function addProperty(formData: FormData) {

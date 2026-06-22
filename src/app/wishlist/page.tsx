@@ -61,7 +61,7 @@ export default async function WishlistPage() {
                   title={property.name}
                   type={property.type}
                   location={`${property.city}, ${property.country}`}
-                  imageUrl={property.coverImageUrl || (property.rooms.length > 0 ? property.rooms[0].front : '/uploads/rooms/placeholder.jpg')}
+                  imageUrl={property.coverImageUrl || (property.rooms.length > 0 ? property.rooms[0].front : '/placeholder.jpg')}
                   isWishlisted={true} // It's in their wishlist
                 />
               </Link>

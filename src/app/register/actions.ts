@@ -3,8 +3,7 @@
 import { prisma } from "@/lib/db";
 import { setUserSession } from "@/lib/userAuth";
 import { redirect } from "next/navigation";
-import { writeFile } from 'fs/promises';
-import path from 'path';
+import { put } from '@vercel/blob';
 
 export async function registerUser(formData: FormData, redirectUrl: string | null) {
   const name = formData.get('name') as string;
@@ -29,17 +28,9 @@ export async function registerUser(formData: FormData, redirectUrl: string | nul
   let avatarUrl = null;
   
   if (avatarFile && avatarFile.size > 0) {
-    const bytes = await avatarFile.arrayBuffer();
-    const buffer = Buffer.from(bytes);
     const fileName = `${Date.now()}-${avatarFile.name.replace(/\s+/g, '-')}`;
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'avatars');
-    
-    // Create dir if not exists
-    await import('fs').then(fs => fs.promises.mkdir(uploadDir, { recursive: true }).catch(() => {}));
-    
-    const filePath = path.join(uploadDir, fileName);
-    await writeFile(filePath, buffer);
-    avatarUrl = `/uploads/avatars/${fileName}`;
+    const blob = await put(`avatars/${fileName}`, avatarFile, { access: 'public' });
+    avatarUrl = blob.url;
   }
 
   const user = await prisma.user.create({

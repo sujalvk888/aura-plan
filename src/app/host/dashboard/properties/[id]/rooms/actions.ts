@@ -3,30 +3,16 @@
 import { redirect } from 'next/navigation';
 import { createRoom } from '@/lib/db';
 import { getHostSession } from '@/lib/auth';
-import fs from 'fs';
-import path from 'path';
+import { put } from '@vercel/blob';
 
-async function saveFileLocally(file: File | null): Promise<string> {
+async function saveFileToBlob(file: File | null): Promise<string> {
   if (!file || file.size === 0) return '';
   
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-  
-  // Create a unique filename
   const ext = file.name.split('.').pop() || 'png';
-  const filename = `${Date.now()}_${Math.random().toString(36).substring(2, 9)}.${ext}`;
+  const filename = `rooms/${Date.now()}_${Math.random().toString(36).substring(2, 9)}.${ext}`;
   
-  // Ensure the directory exists
-  const uploadDir = path.join(process.cwd(), 'public/uploads/rooms');
-  if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, { recursive: true });
-  }
-  
-  const filePath = path.join(uploadDir, filename);
-  fs.writeFileSync(filePath, buffer);
-  
-  // Return the public URL path
-  return `/uploads/rooms/${filename}`;
+  const blob = await put(filename, file, { access: 'public' });
+  return blob.url;
 }
 
 export async function addRoom(propertyId: string, formData: FormData) {
@@ -52,12 +38,12 @@ export async function addRoom(propertyId: string, formData: FormData) {
   const floorFile = formData.get('floorImage') as File;
 
   const [front, back, left, right, ceiling, floor] = await Promise.all([
-    saveFileLocally(frontFile),
-    saveFileLocally(backFile),
-    saveFileLocally(leftFile),
-    saveFileLocally(rightFile),
-    saveFileLocally(ceilingFile),
-    saveFileLocally(floorFile),
+    saveFileToBlob(frontFile),
+    saveFileToBlob(backFile),
+    saveFileToBlob(leftFile),
+    saveFileToBlob(rightFile),
+    saveFileToBlob(ceilingFile),
+    saveFileToBlob(floorFile),
   ]);
 
   await createRoom({
@@ -102,12 +88,12 @@ export async function editRoom(propertyId: string, roomId: string, formData: For
     name, width, length, height, viewingHeight
   };
 
-  if (frontFile && frontFile.size > 0) updates.front = await saveFileLocally(frontFile);
-  if (backFile && backFile.size > 0) updates.back = await saveFileLocally(backFile);
-  if (leftFile && leftFile.size > 0) updates.left = await saveFileLocally(leftFile);
-  if (rightFile && rightFile.size > 0) updates.right = await saveFileLocally(rightFile);
-  if (ceilingFile && ceilingFile.size > 0) updates.ceiling = await saveFileLocally(ceilingFile);
-  if (floorFile && floorFile.size > 0) updates.floor = await saveFileLocally(floorFile);
+  if (frontFile && frontFile.size > 0) updates.front = await saveFileToBlob(frontFile);
+  if (backFile && backFile.size > 0) updates.back = await saveFileToBlob(backFile);
+  if (leftFile && leftFile.size > 0) updates.left = await saveFileToBlob(leftFile);
+  if (rightFile && rightFile.size > 0) updates.right = await saveFileToBlob(rightFile);
+  if (ceilingFile && ceilingFile.size > 0) updates.ceiling = await saveFileToBlob(ceilingFile);
+  if (floorFile && floorFile.size > 0) updates.floor = await saveFileToBlob(floorFile);
 
   const { updateRoom } = await import('@/lib/db');
   await updateRoom(roomId, updates);

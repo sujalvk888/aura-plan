@@ -29,7 +29,7 @@ export default async function PropertiesPage({ searchParams }: { searchParams: P
     title: p.name,
     type: p.type,
     location: `${p.city}, ${p.country}`,
-    imageUrl: p.coverImageUrl || (p.rooms.length > 0 ? p.rooms[0].front : "/uploads/rooms/placeholder.jpg"),
+    imageUrl: p.coverImageUrl || (p.rooms.length > 0 ? p.rooms[0].front : "/placeholder.jpg"),
     isWishlisted: wishlistedIds.has(p.id)
   }));
 
