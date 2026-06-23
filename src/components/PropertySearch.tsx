@@ -54,7 +54,7 @@ export default function PropertySearch() {
         <button 
           type="button"
           onClick={() => setShowFilters(!showFilters)}
-          className={`flex items-center justify-center gap-2 border px-6 py-3.5 rounded-xl font-medium transition-colors ${showFilters ? 'bg-primary/20 border-primary/50 text-primary' : 'bg-white/5 hover:bg-white/10 border-white/10 text-foreground'}`}
+          className={`flex items-center justify-center gap-2 border px-6 py-3.5 sm:w-auto w-full rounded-xl font-medium transition-colors ${showFilters ? 'bg-primary/20 border-primary/50 text-primary' : 'bg-white/5 hover:bg-white/10 border-white/10 text-foreground'}`}
         >
           <Filter size={20} /> Filters
         </button>

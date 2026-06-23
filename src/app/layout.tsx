@@ -36,7 +36,7 @@ export default function RootLayout({
         <ConditionalNavbar>
           <Navbar />
         </ConditionalNavbar>
-        <main className="flex-1 pb-20 md:pb-0">{children}</main>
+        <main className="flex-1">{children}</main>
         <ConditionalFooter>
           <Footer />
         </ConditionalFooter>

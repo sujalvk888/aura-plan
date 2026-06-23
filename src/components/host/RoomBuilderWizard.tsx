@@ -61,7 +61,7 @@ export default function RoomBuilderWizard({ propertyId, roomId, initialRoom }: W
   const currentViewHeight = dimensions.height > 0 ? (viewHeight.ft + (viewHeight.in / 12)) : 0;
 
   return (
-    <form action={formAction} onSubmit={handleSubmit} className={`flex flex-col gap-8 ${step >= 3 ? 'lg:flex-row min-h-[800px] lg:h-[calc(100vh-140px)]' : 'items-center'}`}>
+    <form action={formAction} onSubmit={handleSubmit} className={`flex flex-col gap-8 ${step >= 3 ? 'lg:flex-row h-[calc(100vh-140px)]' : 'items-center'}`}>
       
       {/* Left Sidebar Form */}
       <div className={`w-full flex flex-col gap-6 ${step >= 3 ? 'h-full overflow-y-auto custom-scrollbar lg:w-1/3 pr-4' : 'max-w-2xl'}`}>
@@ -78,7 +78,7 @@ export default function RoomBuilderWizard({ propertyId, roomId, initialRoom }: W
               <input type="text" name="name" value={roomName} onChange={e => setRoomName(e.target.value)} required className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Living Room" />
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-4">
               <div>
                 <label className="block text-xs font-medium text-foreground-muted mb-2">Width (ft)</label>
                 <input type="number" name="width" value={dimensions.width} onChange={e => setDimensions(d => ({ ...d, width: Number(e.target.value) }))} required min="1" className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-primary" />
@@ -184,7 +184,7 @@ export default function RoomBuilderWizard({ propertyId, roomId, initialRoom }: W
 
       {/* Right Side 3D Preview (Only visible in step 3) */}
       {step >= 3 && (
-        <div className="w-full lg:w-2/3 h-[500px] lg:h-full border border-white/10 rounded-2xl overflow-hidden">
+        <div className="w-full lg:w-2/3 h-full">
           <DualViewRoom roomData={{
             width: dimensions.width,
             length: dimensions.length,

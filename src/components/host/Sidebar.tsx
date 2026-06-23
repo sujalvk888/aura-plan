@@ -1,92 +1,76 @@
 import Link from 'next/link';
 import { logout } from '@/app/host/actions';
-import { LayoutDashboard, Building, PlusSquare, LogOut, Settings } from 'lucide-react';
+import { LayoutDashboard, Building, PlusSquare, LogOut, Settings, X } from 'lucide-react';
 
-export default function Sidebar() {
+interface SidebarProps {
+  onMobileClose?: () => void;
+}
+
+export default function Sidebar({ onMobileClose }: SidebarProps) {
   return (
-    <>
-      {/* Desktop Sidebar */}
-      <aside className="hidden md:flex w-64 border-r border-white/5 bg-surface/50 backdrop-blur-md flex-col h-screen sticky top-0">
-        <div className="p-6 border-b border-white/5">
-          <Link href="/host/dashboard" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded flex items-center justify-center font-bold text-foreground">
-              A
-            </div>
-            <span className="text-xl font-heading font-semibold tracking-wide text-foreground">
-              AuraPlan <span className="text-xs text-primary font-normal">HOST</span>
-            </span>
-          </Link>
-        </div>
-
-        <nav className="flex-1 p-4 space-y-2">
-          <Link 
-            href="/host/dashboard" 
-            className="flex items-center gap-3 px-4 py-3 text-foreground-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors"
-          >
-            <LayoutDashboard size={20} />
-            <span className="font-medium text-sm">Dashboard</span>
-          </Link>
-          <Link 
-            href="/host/dashboard/properties" 
-            className="flex items-center gap-3 px-4 py-3 text-foreground-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors"
-          >
-            <Building size={20} />
-            <span className="font-medium text-sm">My Properties</span>
-          </Link>
-          <Link 
-            href="/host/dashboard/properties/new" 
-            className="flex items-center gap-3 px-4 py-3 text-foreground-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors"
-          >
-            <PlusSquare size={20} />
-            <span className="font-medium text-sm">Add Property</span>
-          </Link>
-          
-          <div className="pt-4 mt-4 border-t border-white/5">
-            <Link 
-              href="/host/dashboard/settings" 
-              className="flex items-center gap-3 px-4 py-3 text-foreground-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors"
-            >
-              <Settings size={20} />
-              <span className="font-medium text-sm">Settings</span>
-            </Link>
+    <aside className="w-64 border-r border-white/5 bg-surface/95 backdrop-blur-md flex flex-col h-screen sticky top-0 shadow-2xl md:shadow-none">
+      <div className="p-6 border-b border-white/5 flex items-center justify-between">
+        <Link href="/host/dashboard" onClick={onMobileClose} className="flex items-center gap-2">
+          <div className="w-8 h-8 bg-primary rounded flex items-center justify-center font-bold text-foreground">
+            A
           </div>
-        </nav>
+          <span className="text-xl font-heading font-semibold tracking-wide text-foreground">
+            AuraPlan <span className="text-xs text-primary font-normal">HOST</span>
+          </span>
+        </Link>
+        {onMobileClose && (
+          <button onClick={onMobileClose} className="md:hidden p-2 text-foreground-muted hover:text-foreground">
+            <X size={20} />
+          </button>
+        )}
+      </div>
 
-        <div className="p-4 border-t border-white/5">
-          <form action={logout}>
-            <button type="submit" className="flex w-full items-center gap-3 px-4 py-3 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-xl transition-colors">
-              <LogOut size={20} />
-              <span className="font-medium text-sm">Logout</span>
-            </button>
-          </form>
-        </div>
-      </aside>
-
-      {/* Mobile Bottom Navigation */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-xl border-t border-white/10 flex justify-around items-center h-16 z-[100] px-2 safe-area-pb">
-        <Link href="/host/dashboard" className="flex flex-col items-center justify-center w-full h-full text-foreground-muted hover:text-foreground transition-colors">
+      <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
+        <Link 
+          href="/host/dashboard" 
+          onClick={onMobileClose}
+          className="flex items-center gap-3 px-4 py-3 text-foreground-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors"
+        >
           <LayoutDashboard size={20} />
-          <span className="text-[10px] mt-1 font-medium">Home</span>
+          <span className="font-medium text-sm">Dashboard</span>
         </Link>
-        <Link href="/host/dashboard/properties" className="flex flex-col items-center justify-center w-full h-full text-foreground-muted hover:text-foreground transition-colors">
+        <Link 
+          href="/host/dashboard/properties" 
+          onClick={onMobileClose}
+          className="flex items-center gap-3 px-4 py-3 text-foreground-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors"
+        >
           <Building size={20} />
-          <span className="text-[10px] mt-1 font-medium">Properties</span>
+          <span className="font-medium text-sm">My Properties</span>
         </Link>
-        <Link href="/host/dashboard/properties/new" className="flex flex-col items-center justify-center w-full h-full text-foreground-muted hover:text-foreground transition-colors relative">
-          <div className="absolute -top-6 bg-primary text-background p-3.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.5)] shadow-primary/50 border-4 border-background transition-transform hover:scale-110 active:scale-95">
-            <PlusSquare size={24} className="fill-current" />
-          </div>
-          <span className="text-[10px] mt-8 font-medium text-primary">Add</span>
+        <Link 
+          href="/host/dashboard/properties/new" 
+          onClick={onMobileClose}
+          className="flex items-center gap-3 px-4 py-3 text-foreground-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors"
+        >
+          <PlusSquare size={20} />
+          <span className="font-medium text-sm">Add Property</span>
         </Link>
-        <Link href="/host/dashboard/settings" className="flex flex-col items-center justify-center w-full h-full text-foreground-muted hover:text-foreground transition-colors">
-          <div className="relative">
+        
+        <div className="pt-4 mt-4 border-t border-white/5">
+          <Link 
+            href="/host/dashboard/settings" 
+            onClick={onMobileClose}
+            className="flex items-center gap-3 px-4 py-3 text-foreground-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors"
+          >
             <Settings size={20} />
-            {/* Notification Badge */}
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 border-2 border-background rounded-full animate-pulse"></span>
-          </div>
-          <span className="text-[10px] mt-1 font-medium">Settings</span>
-        </Link>
+            <span className="font-medium text-sm">Account Settings</span>
+          </Link>
+        </div>
       </nav>
-    </>
+
+      <div className="p-4 border-t border-white/5">
+        <form action={logout}>
+          <button type="submit" className="flex w-full items-center gap-3 px-4 py-3 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-xl transition-colors">
+            <LogOut size={20} />
+            <span className="font-medium text-sm">Logout</span>
+          </button>
+        </form>
+      </div>
+    </aside>
   );
 }

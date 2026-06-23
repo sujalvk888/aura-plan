@@ -38,7 +38,7 @@ export default async function Home() {
             <span className="text-xs font-medium text-foreground-muted tracking-wider uppercase">Next-Generation Real Estate</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-heading font-bold text-foreground mb-6 leading-tight drop-shadow-2xl">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-heading font-bold text-foreground mb-6 leading-tight drop-shadow-2xl">
             Experience Spaces <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-hover">Before You Arrive</span>
           </h1>
           
@@ -145,7 +145,7 @@ export default async function Home() {
       {/* Final CTA */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary/10" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] md:w-[800px] h-[90vw] md:h-[800px] bg-primary/20 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/20 blur-[120px] rounded-full pointer-events-none" />
         
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-heading font-bold text-foreground mb-8">
