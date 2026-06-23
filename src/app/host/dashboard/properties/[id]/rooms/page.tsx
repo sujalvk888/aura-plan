@@ -56,11 +56,11 @@ export default async function RoomsPage({ params }: { params: Promise<{ id: stri
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {rooms.map((room: Room) => (
-            <div key={room.id} className="bg-surface border border-white/5 rounded-2xl overflow-hidden group">
-              <div className="h-40 bg-background/50 flex flex-col items-center justify-center border-b border-white/5 relative overflow-hidden">
+            <div key={room.id} className="bg-surface border border-white/5 rounded-2xl overflow-hidden group flex flex-col">
+              <div className="h-40 bg-background/50 flex flex-col items-center justify-center relative overflow-hidden rounded-t-2xl">
                 {room.front ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={room.front} alt="Room Front View" className="w-full h-full object-cover" />
+                  <img src={room.front} alt="Room Front View" className="w-full h-full object-cover border-none outline-none shadow-none rounded-t-2xl" />
                 ) : (
                   <>
                     <Box className="text-primary/50 mb-2" size={40} />
@@ -68,33 +68,33 @@ export default async function RoomsPage({ params }: { params: Promise<{ id: stri
                   </>
                 )}
               </div>
-              <div className="p-6">
-                <h3 className="text-lg font-heading font-semibold mb-1">{room.name}</h3>
-                <p className="text-sm text-foreground-muted mb-4">
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex justify-between items-start mb-1">
+                  <h3 className="text-lg font-heading font-semibold text-foreground">{room.name}</h3>
+                  <span className="text-[11px] font-bold px-2.5 py-1 bg-[rgba(196,154,108,0.15)] text-[#C49A6C] rounded-full whitespace-nowrap">
+                    Interior Ready
+                  </span>
+                </div>
+                <p className="text-sm text-[#F8F6F0]/65 mb-4">
                   {room.width}ft x {room.length}ft x {room.height}ft
                 </p>
                 
-                <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-xs text-primary font-medium px-2 py-1 bg-primary/10 rounded">
-                      Interior Ready
-                    </span>
-                    <Link 
-                      href={`/host/dashboard/properties/${id}/rooms/${room.id}/edit`}
-                      className="text-xs text-foreground-muted hover:text-primary transition-colors border border-white/10 hover:border-primary/50 px-2 py-1 rounded"
-                    >
-                      Edit Details
-                    </Link>
-                    <Link 
-                      href={`/host/dashboard/properties/${id}/rooms/${room.id}/hotspots`}
-                      className="text-xs text-foreground-muted hover:text-primary transition-colors border border-white/10 hover:border-primary/50 px-2 py-1 rounded"
-                    >
-                      Manage Hotspots
-                    </Link>
-                  </div>
-                  <form action={removeRoomAction}>
+                <div className="mt-auto pt-4 border-t border-[rgba(255,255,255,0.08)] flex flex-row items-center gap-2">
+                  <Link 
+                    href={`/host/dashboard/properties/${id}/rooms/${room.id}/edit`}
+                    className="text-xs font-medium text-[#F8F6F0] bg-transparent border border-white/20 hover:bg-white/5 transition-colors px-3 py-1.5 rounded-md"
+                  >
+                    Edit Details
+                  </Link>
+                  <Link 
+                    href={`/host/dashboard/properties/${id}/rooms/${room.id}/hotspots`}
+                    className="text-xs font-medium text-[#F8F6F0] bg-transparent border border-white/20 hover:bg-white/5 transition-colors px-3 py-1.5 rounded-md"
+                  >
+                    Manage Hotspots
+                  </Link>
+                  <form action={removeRoomAction} className="ml-auto flex items-center">
                     <input type="hidden" name="roomId" value={room.id} />
-                    <button type="submit" className="p-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors">
+                    <button type="submit" className="p-1.5 text-[#E07A5F] hover:text-[#E07A5F]/80 hover:bg-[#E07A5F]/10 rounded-md transition-colors flex items-center justify-center">
                       <Trash2 size={16} />
                     </button>
                   </form>
