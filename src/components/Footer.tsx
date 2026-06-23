@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   return (
@@ -7,8 +8,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-16">
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-primary rounded flex items-center justify-center font-bold text-lg text-foreground shadow-lg">
-                A
+              <div className="flex items-center justify-center">
+                <Image src="/logo.png" alt="AuraPlan Logo" width={40} height={40} className="object-contain drop-shadow-lg" />
               </div>
               <span className="text-2xl font-heading font-semibold tracking-wide text-[#FFF8E7]">
                 AuraPlan
