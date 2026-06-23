@@ -1,5 +1,5 @@
 import { addProperty } from "../actions";
-import { Plus, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 import { getHostSession } from "@/lib/auth";
