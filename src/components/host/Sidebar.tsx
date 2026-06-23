@@ -72,14 +72,18 @@ export default function Sidebar() {
           <Building size={20} />
           <span className="text-[10px] mt-1 font-medium">Properties</span>
         </Link>
-        <Link href="/host/dashboard/properties/new" className="flex flex-col items-center justify-center w-full h-full text-foreground-muted hover:text-foreground transition-colors">
-          <div className="bg-primary/20 text-primary p-2 rounded-full -mt-6 border-4 border-background">
-            <PlusSquare size={20} />
+        <Link href="/host/dashboard/properties/new" className="flex flex-col items-center justify-center w-full h-full text-foreground-muted hover:text-foreground transition-colors relative">
+          <div className="absolute -top-6 bg-primary text-background p-3.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.5)] shadow-primary/50 border-4 border-background transition-transform hover:scale-110 active:scale-95">
+            <PlusSquare size={24} className="fill-current" />
           </div>
-          <span className="text-[10px] mt-1 font-medium">Add</span>
+          <span className="text-[10px] mt-8 font-medium text-primary">Add</span>
         </Link>
         <Link href="/host/dashboard/settings" className="flex flex-col items-center justify-center w-full h-full text-foreground-muted hover:text-foreground transition-colors">
-          <Settings size={20} />
+          <div className="relative">
+            <Settings size={20} />
+            {/* Notification Badge */}
+            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 border-2 border-background rounded-full animate-pulse"></span>
+          </div>
           <span className="text-[10px] mt-1 font-medium">Settings</span>
         </Link>
       </nav>
