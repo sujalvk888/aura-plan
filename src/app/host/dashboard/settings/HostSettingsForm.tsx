@@ -64,20 +64,17 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
         <div className="flex flex-col gap-4">
           <label className="text-sm font-medium text-foreground mb-1">Profile Picture</label>
           <div className="flex flex-row items-center gap-5">
-            <div 
-              onClick={handleImageClick}
-              className="relative w-24 h-24 rounded-full bg-background border border-white/10 flex items-center justify-center cursor-pointer overflow-hidden group hover:border-primary transition-colors flex-shrink-0"
-            >
-              {avatarPreview ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
-              ) : (
-                <span className="text-3xl font-heading font-bold text-foreground-muted">{host.name.charAt(0)}</span>
-              )}
-              <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
-                <Camera size={24} className="text-white" />
+            <div className="relative flex-shrink-0" onClick={handleImageClick}>
+              <div className="w-24 h-24 rounded-full bg-background border border-white/10 flex items-center justify-center cursor-pointer overflow-hidden group hover:border-primary transition-colors">
+                {avatarPreview ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={avatarPreview} alt="Avatar" className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-3xl font-heading font-bold text-foreground-muted">{host.name.charAt(0)}</span>
+                )}
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
-              <div className="absolute bottom-0 right-0 w-7 h-7 bg-[#16110C] rounded-full flex items-center justify-center shadow-lg border border-[#FFF8E7]/30">
+              <div className="absolute bottom-0 right-0 w-7 h-7 bg-[#16110C] rounded-full flex items-center justify-center shadow-lg border border-[#FFF8E7]/30 cursor-pointer pointer-events-none">
                 <Camera size={14} className="text-[#FFF8E7]" />
               </div>
             </div>
