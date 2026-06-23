@@ -1,11 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Menu, X, User, Heart } from 'lucide-react';
 import Link from 'next/link';
 
 export default function MobileNavMenu({ user }: { user: any }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -19,8 +25,8 @@ export default function MobileNavMenu({ user }: { user: any }) {
         <Menu size={24} />
       </button>
 
-      {/* Mobile Drawer Overlay */}
-      {isOpen && (
+      {/* Mobile Drawer Overlay via Portal to escape glass effect constraints */}
+      {mounted && isOpen && createPortal(
         <div className="fixed inset-0 z-[100] flex">
           <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={toggleMenu} />
           
@@ -74,10 +80,10 @@ export default function MobileNavMenu({ user }: { user: any }) {
                   </Link>
                 </div>
               )}
-
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
