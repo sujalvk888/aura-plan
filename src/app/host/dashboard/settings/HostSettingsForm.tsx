@@ -61,12 +61,12 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
     <div className="bg-surface border border-white/5 rounded-2xl p-8 max-w-2xl">
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Avatar Upload */}
-        <div className="flex flex-col items-center sm:items-start gap-4">
+        <div className="flex flex-col gap-4">
           <label className="text-sm font-medium text-foreground">Profile Picture</label>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-row items-center gap-5">
             <div 
               onClick={handleImageClick}
-              className="relative w-24 h-24 rounded-full bg-background border border-white/10 flex items-center justify-center cursor-pointer overflow-hidden group hover:border-primary transition-colors"
+              className="relative w-24 h-24 rounded-full bg-background border border-white/10 flex items-center justify-center cursor-pointer overflow-hidden group hover:border-primary transition-colors flex-shrink-0"
             >
               {avatarPreview ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -77,10 +77,13 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
                 <Camera size={24} className="text-white" />
               </div>
+              <div className="absolute bottom-0 right-0 w-8 h-8 bg-[#16110C] rounded-full flex items-center justify-center shadow-lg border border-white/10">
+                <Camera size={14} className="text-[#FFF8E7]" />
+              </div>
             </div>
-            <div className="text-sm text-foreground-muted">
+            <div className="text-sm text-[#E8E4DF]">
               <p>Click the avatar to upload a new photo.</p>
-              <p className="text-xs mt-1">Recommended size: 256x256px.</p>
+              <p className="text-xs mt-1 opacity-80">Recommended size: 256x256px.</p>
             </div>
             <input 
               type="file" 
@@ -102,7 +105,7 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
               name="name" 
               defaultValue={host.name} 
               required 
-              className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+              className="w-full bg-[#16110C] border border-white/12 rounded-xl px-4 py-3 text-[#FFF8E7] text-[16px] focus:outline-none focus:border-primary transition-colors"
             />
           </div>
 
@@ -112,7 +115,7 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
               type="email" 
               value={host.email} 
               disabled 
-              className="w-full bg-background/50 border border-white/5 rounded-xl px-4 py-3 text-foreground-muted cursor-not-allowed"
+              className="w-full bg-[#16110C] border border-white/12 rounded-xl px-4 py-3 text-[#FFF8E7]/60 text-[16px] cursor-not-allowed"
             />
           </div>
 
@@ -123,7 +126,7 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
               defaultValue={host.bio || ''} 
               rows={4}
               placeholder="Tell clients about yourself and your properties..."
-              className="w-full bg-background border border-white/10 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary resize-none"
+              className="w-full bg-[#16110C] border border-white/12 rounded-xl px-4 py-3 text-[#FFF8E7] text-[16px] focus:outline-none focus:border-primary transition-colors resize-none"
             ></textarea>
             <p className="text-xs text-foreground-muted mt-2">This bio will be shown on the property detail pages.</p>
           </div>

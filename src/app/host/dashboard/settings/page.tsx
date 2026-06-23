@@ -25,10 +25,10 @@ export default async function HostSettingsPage() {
 
       <HostSettingsForm host={host} />
 
-      <div className="mt-12 pt-10 border-t border-white/5 flex flex-col sm:flex-row gap-4">
+      <div className="mt-16 pt-10 border-t border-white/5 flex flex-col sm:flex-row gap-4">
         <Link 
           href="/" 
-          className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-surface hover:bg-white/5 border border-white/10 rounded-xl font-medium transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-transparent hover:bg-white/5 border border-primary rounded-xl font-medium transition-colors"
         >
           <Home size={20} />
           Switch to User Interface
@@ -37,7 +37,7 @@ export default async function HostSettingsPage() {
         <form action={logout} className="flex-1 flex">
           <button 
             type="submit" 
-            className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 rounded-xl font-medium transition-colors"
+            className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-red-500/10 hover:bg-red-500/20 text-[#E07A5F] border border-red-500/10 rounded-xl font-medium transition-colors"
           >
             <LogOut size={20} />
             Logout from Host
