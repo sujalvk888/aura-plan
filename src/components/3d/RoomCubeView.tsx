@@ -22,7 +22,9 @@ function RoomCubeBox({ dimensions, surfaces }: RoomCubeViewProps) {
   
   const safeSurface = (url: string) => {
     if (!url) return fallback;
-    if (url.startsWith('http://') || url.startsWith('https://')) return fallback;
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      if (!url.includes('cloudinary.com')) return fallback;
+    }
     return url;
   };
 

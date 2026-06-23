@@ -30,8 +30,10 @@ function RoomInteriorBox({ dimensions, viewingHeight, surfaces, hotspots, onSurf
   // Only use local paths or data URIs. External URLs will cause CORS errors in Three.js.
   const safeSurface = (url: string) => {
     if (!url) return FALLBACK_DATA_URI;
-    // If it starts with http and is NOT our own origin, skip it (CORS issues)
-    if (url.startsWith('http://') || url.startsWith('https://')) return FALLBACK_DATA_URI;
+    // If it's an external URL, only allow Cloudinary to prevent CORS errors
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+      if (!url.includes('cloudinary.com')) return FALLBACK_DATA_URI;
+    }
     return url;
   };
 
