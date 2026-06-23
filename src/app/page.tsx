@@ -6,7 +6,7 @@ import { ArrowRight, Eye, Layers, Compass } from "lucide-react";
 
 export default async function Home() {
   const dbProperties = await getAllProperties();
-  let featuredProperties = dbProperties.slice(0, 3).map(p => ({
+  const featuredProperties = dbProperties.slice(0, 3).map(p => ({
     id: p.id,
     name: p.name,
     location: `${p.city}, ${p.country}`,
