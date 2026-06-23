@@ -24,14 +24,14 @@ export default function DualViewRoom({ roomData }: { roomData: RoomData }) {
   return (
     <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
       {/* Top Toggle Bar */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 bg-surface/80 backdrop-blur-md border border-white/10 p-1 rounded-xl flex gap-1 shadow-lg">
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 bg-black/60 backdrop-blur-md border border-white/15 p-1.5 rounded-full flex gap-1 shadow-lg">
         <button
           type="button"
           onClick={() => setViewMode('interior')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
             viewMode === 'interior' 
-              ? 'bg-primary text-foreground shadow-sm' 
-              : 'text-foreground-muted hover:text-foreground hover:bg-white/5'
+              ? 'bg-primary text-[#FFF8E7] shadow-sm' 
+              : 'bg-transparent text-[#FFF8E7]/60 hover:text-[#FFF8E7] hover:bg-white/5'
           }`}
         >
           <Eye size={16} /> Interior View (Main)
@@ -39,10 +39,10 @@ export default function DualViewRoom({ roomData }: { roomData: RoomData }) {
         <button
           type="button"
           onClick={() => setViewMode('cube')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
             viewMode === 'cube' 
-              ? 'bg-primary text-foreground shadow-sm' 
-              : 'text-foreground-muted hover:text-foreground hover:bg-white/5'
+              ? 'bg-primary text-[#FFF8E7] shadow-sm' 
+              : 'bg-transparent text-[#FFF8E7]/60 hover:text-[#FFF8E7] hover:bg-white/5'
           }`}
         >
           <Box size={16} /> Cube View (Validation)
@@ -67,12 +67,12 @@ export default function DualViewRoom({ roomData }: { roomData: RoomData }) {
 
       {/* Overlay helpers */}
       {viewMode === 'interior' && (
-        <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-lg text-xs text-foreground/80 pointer-events-none">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-block px-5 py-2 bg-black/75 border border-white/10 rounded-full text-[13px] text-[#FFF8E7] tracking-wider pointer-events-none">
           Click and drag to look around 360°
         </div>
       )}
       {viewMode === 'cube' && (
-        <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-lg text-xs text-foreground/80 pointer-events-none">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-block px-5 py-2 bg-black/75 border border-white/10 rounded-full text-[13px] text-[#FFF8E7] tracking-wider pointer-events-none">
           Click and drag to rotate the cube • Scroll to zoom
         </div>
       )}

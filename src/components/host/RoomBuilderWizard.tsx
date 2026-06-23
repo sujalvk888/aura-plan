@@ -126,25 +126,25 @@ export default function RoomBuilderWizard({ propertyId, roomId, initialRoom }: W
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {['front', 'back', 'left', 'right', 'ceiling', 'floor'].map((surface) => (
-                <div key={surface} className="relative overflow-hidden rounded-xl border border-white/10 bg-background flex items-center">
-                  <div className="w-16 h-16 bg-white/5 flex-shrink-0 border-r border-white/10 flex items-center justify-center">
+                <div key={surface} className="relative overflow-hidden rounded-xl border border-[rgba(255,255,255,0.08)] bg-[#16110C] flex items-center">
+                  <div className="w-20 h-20 p-3 bg-white/5 flex-shrink-0 border-r border-[rgba(255,255,255,0.08)] flex items-center justify-center">
                     {surfacePreviews[surface as keyof typeof surfacePreviews] ? (
                       <>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={surfacePreviews[surface as keyof typeof surfacePreviews]} alt={surface} className="w-full h-full object-cover" />
+                        <img src={surfacePreviews[surface as keyof typeof surfacePreviews]} alt={surface} className="w-full h-full object-cover rounded-[6px]" />
                       </>
                     ) : (
                       <ImageIcon size={20} className="text-foreground-muted/50" />
                     )}
                   </div>
-                  <div className="flex-1 px-4 py-2">
-                    <span className="block text-sm font-medium capitalize mb-1">{surface}</span>
+                  <div className="flex-1 px-4 py-2 min-w-0">
+                    <span className="block text-sm text-[#F8F6F0] font-semibold capitalize mb-1">{surface}</span>
                     <input 
                       type="file" 
                       name={`${surface}Image`} 
                       accept="image/*" 
                       onChange={(e) => handleImageChange(e, surface)}
-                      className="text-xs text-foreground-muted w-full file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:bg-white/10 file:text-foreground hover:file:bg-white/20 cursor-pointer"
+                      className="text-xs text-[#F8F6F0]/70 w-full file:mr-3 file:py-1.5 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-medium file:bg-white/10 file:text-[#F8F6F0] hover:file:bg-primary hover:file:text-[#FFF8E7] file:transition-colors cursor-pointer truncate"
                     />
                   </div>
                 </div>
@@ -156,10 +156,10 @@ export default function RoomBuilderWizard({ propertyId, roomId, initialRoom }: W
             )}
             
             <div className="pt-4 space-y-3">
-              <button type="button" disabled={Object.values(surfacePreviews).some(url => url === '')} onClick={() => setStep(3)} className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-foreground py-3.5 rounded-xl font-medium transition-colors shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed">
+              <button type="button" disabled={Object.values(surfacePreviews).some(url => url === '')} onClick={() => setStep(3)} className="w-full flex items-center justify-center gap-2 bg-primary text-[#FFF8E7] py-4 rounded-full font-bold transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 disabled:opacity-50 disabled:cursor-not-allowed">
                 Generate Previews <ArrowRight size={18} />
               </button>
-              <button type="button" onClick={() => setStep(1)} className="w-full flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-foreground py-3.5 rounded-xl font-medium transition-colors">
+              <button type="button" onClick={() => setStep(1)} className="w-full flex items-center justify-center gap-2 bg-transparent border border-primary text-[#FFF8E7] hover:bg-white/5 py-4 rounded-full font-medium transition-colors">
                 Back to Dimensions
               </button>
             </div>
@@ -171,7 +171,7 @@ export default function RoomBuilderWizard({ propertyId, roomId, initialRoom }: W
           <h2 className="text-xl font-heading font-semibold text-foreground mb-2">3. Review & Save</h2>
           <p className="text-sm text-foreground-muted mb-6">Review the generated room in the viewer. If everything looks correct, save the room to your workspace.</p>
           
-          <button type="submit" disabled={isSubmitting} className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-foreground py-3.5 rounded-xl font-medium transition-colors shadow-lg shadow-primary/20 disabled:opacity-50">
+          <button type="submit" disabled={isSubmitting} className="w-full flex items-center justify-center gap-2 bg-primary text-[#FFF8E7] py-4 rounded-full font-bold transition-all shadow-lg shadow-primary/20 hover:shadow-primary/30 disabled:opacity-50">
             {isSubmitting ? 'Saving Room...' : <><Save size={18} /> Save Room to Workspace</>}
           </button>
 

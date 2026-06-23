@@ -134,13 +134,13 @@ export default function RoomInteriorView(props: RoomInteriorViewProps) {
       {/* Overlay UI for First Person Mode (Desktop Only) */}
       {!isTouchDevice && !isLocked && (
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm pointer-events-none transition-opacity duration-300">
-          <div className="bg-surface/80 border border-white/10 p-8 rounded-3xl text-center shadow-2xl flex flex-col items-center max-w-sm">
+          <div className="bg-[#16110C]/80 border border-white/20 p-8 rounded-3xl text-center shadow-[0_20px_40px_rgba(0,0,0,0.8)] backdrop-blur-[16px] flex flex-col items-center max-w-sm">
             <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center text-primary mb-6 animate-pulse">
               <MousePointer2 size={32} />
             </div>
             <h3 className="text-2xl font-heading font-bold text-foreground mb-3">Click to Explore</h3>
-            <p className="text-foreground-muted mb-8">
-              Click anywhere to lock your cursor. Use <kbd className="bg-white/10 px-2 py-1 rounded text-foreground font-mono mx-1">W</kbd><kbd className="bg-white/10 px-2 py-1 rounded text-foreground font-mono mx-1">A</kbd><kbd className="bg-white/10 px-2 py-1 rounded text-foreground font-mono mx-1">S</kbd><kbd className="bg-white/10 px-2 py-1 rounded text-foreground font-mono mx-1">D</kbd> keys to walk around and your mouse to look.
+            <p className="text-foreground-muted mb-8 leading-relaxed">
+              Click anywhere to lock your cursor. Use <kbd className="bg-[#0D0A08] border border-[#FFF8E7] px-2 py-1 rounded-[4px] text-[#FFF8E7] font-mono font-bold mx-1">W</kbd><kbd className="bg-[#0D0A08] border border-[#FFF8E7] px-2 py-1 rounded-[4px] text-[#FFF8E7] font-mono font-bold mx-1">A</kbd><kbd className="bg-[#0D0A08] border border-[#FFF8E7] px-2 py-1 rounded-[4px] text-[#FFF8E7] font-mono font-bold mx-1">S</kbd><kbd className="bg-[#0D0A08] border border-[#FFF8E7] px-2 py-1 rounded-[4px] text-[#FFF8E7] font-mono font-bold mx-1">D</kbd> keys to walk around and your mouse to look.
             </p>
             <p className="text-xs text-foreground-muted/50">
               Press ESC to pause and release cursor

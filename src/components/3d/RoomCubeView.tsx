@@ -63,7 +63,7 @@ export default function RoomCubeView(props: RoomCubeViewProps) {
   const camZ = maxDim * 1.5 || 20;
 
   return (
-    <div className="w-full h-full bg-background">
+    <div className="w-full h-full bg-[radial-gradient(circle_at_center,#16110C_0%,#000000_100%)]">
       <Canvas camera={{ position: [camZ, camZ * 0.8, camZ], fov: 50 }}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
