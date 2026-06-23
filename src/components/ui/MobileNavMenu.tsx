@@ -5,11 +5,12 @@ import { createPortal } from 'react-dom';
 import { Menu, X, User, Heart } from 'lucide-react';
 import Link from 'next/link';
 
-export default function MobileNavMenu({ user }: { user: any }) {
+export default function MobileNavMenu({ user }: { user: { avatarUrl?: string | null; name?: string } | null }) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line
     setMounted(true);
   }, []);
 

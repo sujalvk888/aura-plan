@@ -50,7 +50,7 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
         setSuccess(true);
         setTimeout(() => setSuccess(false), 3000);
       }
-    } catch (err) {
+    } catch {
       setError("An unexpected error occurred. Please try again.");
     } finally {
       setIsPending(false);
