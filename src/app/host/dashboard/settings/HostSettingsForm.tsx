@@ -62,7 +62,7 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Avatar Upload */}
         <div className="flex flex-col gap-4">
-          <label className="text-sm font-medium text-foreground">Profile Picture</label>
+          <label className="text-sm font-medium text-foreground mb-1">Profile Picture</label>
           <div className="flex flex-row items-center gap-5">
             <div 
               onClick={handleImageClick}
@@ -77,7 +77,7 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
                 <Camera size={24} className="text-white" />
               </div>
-              <div className="absolute bottom-0 right-0 w-8 h-8 bg-[#16110C] rounded-full flex items-center justify-center shadow-lg border border-white/10">
+              <div className="absolute bottom-0 right-0 w-7 h-7 bg-[#16110C] rounded-full flex items-center justify-center shadow-lg border border-[#FFF8E7]/30">
                 <Camera size={14} className="text-[#FFF8E7]" />
               </div>
             </div>
@@ -105,7 +105,7 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
               name="name" 
               defaultValue={host.name} 
               required 
-              className="w-full bg-[#16110C] border border-white/12 rounded-xl px-4 py-3 text-[#FFF8E7] text-[16px] focus:outline-none focus:border-primary transition-colors"
+              className="w-full bg-[#16110C] border border-white/12 rounded-xl px-4 py-3 text-[#F8F6F0] text-[16px] focus:outline-none focus:border-primary transition-colors"
             />
           </div>
 
@@ -115,7 +115,7 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
               type="email" 
               value={host.email} 
               disabled 
-              className="w-full bg-[#16110C] border border-white/12 rounded-xl px-4 py-3 text-[#FFF8E7]/60 text-[16px] cursor-not-allowed"
+              className="w-full bg-[#16110C] border border-white/12 rounded-xl px-4 py-3 text-[#F8F6F0]/60 text-[16px] cursor-not-allowed"
             />
           </div>
 
@@ -126,7 +126,7 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
               defaultValue={host.bio || ''} 
               rows={4}
               placeholder="Tell clients about yourself and your properties..."
-              className="w-full bg-[#16110C] border border-white/12 rounded-xl px-4 py-3 text-[#FFF8E7] text-[16px] focus:outline-none focus:border-primary transition-colors resize-none"
+              className="w-full bg-[#16110C] border border-white/12 rounded-xl px-4 py-3 text-[#F8F6F0] text-[16px] focus:outline-none focus:border-primary transition-colors resize-none"
             ></textarea>
             <p className="text-xs text-foreground-muted mt-2">This bio will be shown on the property detail pages.</p>
           </div>
@@ -148,7 +148,7 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
           <button 
             type="submit" 
             disabled={isPending}
-            className="flex items-center gap-2 bg-primary hover:bg-primary-hover text-foreground px-6 py-3 rounded-xl font-medium transition-all shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-foreground px-6 py-3.5 rounded-xl font-medium transition-all shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]"
           >
             {isPending ? <Loader2 size={18} className="animate-spin" /> : <Save size={18} />}
             {isPending ? 'Saving Changes...' : 'Save Settings'}

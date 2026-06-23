@@ -34,24 +34,27 @@ export default function Sidebar({ onMobileClose }: SidebarProps) {
         <Link 
           href="/host/dashboard" 
           onClick={onMobileClose}
-          className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${pathname === '/host/dashboard' ? 'bg-[rgba(180,130,80,0.15)] border-l-[3px] border-primary text-[#FFF8E7]' : 'text-foreground-muted hover:text-foreground hover:bg-white/5'}`}
+          className={`relative flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${pathname === '/host/dashboard' ? 'bg-[rgba(180,130,80,0.15)] text-[#FFF8E7]' : 'text-foreground-muted hover:text-foreground hover:bg-white/5'}`}
         >
+          {pathname === '/host/dashboard' && <span className="absolute left-0 top-1/2 -translate-y-1/2 h-1/2 w-[3px] bg-primary rounded-r-full" />}
           <LayoutDashboard size={20} />
           <span className="font-medium text-sm">Dashboard</span>
         </Link>
         <Link 
           href="/host/dashboard/properties" 
           onClick={onMobileClose}
-          className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${pathname === '/host/dashboard/properties' ? 'bg-[rgba(180,130,80,0.15)] border-l-[3px] border-primary text-[#FFF8E7]' : 'text-foreground-muted hover:text-foreground hover:bg-white/5'}`}
+          className={`relative flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${pathname === '/host/dashboard/properties' ? 'bg-[rgba(180,130,80,0.15)] text-[#FFF8E7]' : 'text-foreground-muted hover:text-foreground hover:bg-white/5'}`}
         >
+          {pathname === '/host/dashboard/properties' && <span className="absolute left-0 top-1/2 -translate-y-1/2 h-1/2 w-[3px] bg-primary rounded-r-full" />}
           <Building size={20} />
           <span className="font-medium text-sm">My Properties</span>
         </Link>
         <Link 
           href="/host/dashboard/properties/new" 
           onClick={onMobileClose}
-          className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${pathname === '/host/dashboard/properties/new' ? 'bg-[rgba(180,130,80,0.15)] border-l-[3px] border-primary text-[#FFF8E7]' : 'text-foreground-muted hover:text-foreground hover:bg-white/5'}`}
+          className={`relative flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${pathname === '/host/dashboard/properties/new' ? 'bg-[rgba(180,130,80,0.15)] text-[#FFF8E7]' : 'text-foreground-muted hover:text-foreground hover:bg-white/5'}`}
         >
+          {pathname === '/host/dashboard/properties/new' && <span className="absolute left-0 top-1/2 -translate-y-1/2 h-1/2 w-[3px] bg-primary rounded-r-full" />}
           <PlusSquare size={20} />
           <span className="font-medium text-sm">Add Property</span>
         </Link>
@@ -60,8 +63,9 @@ export default function Sidebar({ onMobileClose }: SidebarProps) {
           <Link 
             href="/host/dashboard/settings" 
             onClick={onMobileClose}
-            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${pathname === '/host/dashboard/settings' ? 'bg-[rgba(180,130,80,0.15)] border-l-[3px] border-primary text-[#FFF8E7]' : 'text-foreground-muted hover:text-foreground hover:bg-white/5'}`}
+            className={`relative flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${pathname === '/host/dashboard/settings' ? 'bg-[rgba(180,130,80,0.15)] text-[#FFF8E7]' : 'text-foreground-muted hover:text-foreground hover:bg-white/5'}`}
           >
+            {pathname === '/host/dashboard/settings' && <span className="absolute left-0 top-1/2 -translate-y-1/2 h-1/2 w-[3px] bg-primary rounded-r-full" />}
             <Settings size={20} />
             <span className="font-medium text-sm">Account Settings</span>
           </Link>
