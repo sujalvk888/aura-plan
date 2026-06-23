@@ -68,7 +68,7 @@ export default function PropertySearch() {
               <X size={16} />
             </button>
           </div>
-          <div className="flex flex-wrap gap-2 sm:gap-3">
+          <div className="flex flex-wrap gap-2">
             {propertyTypes.map(t => (
               <button
                 key={t}

@@ -46,7 +46,7 @@ export default function PropertyDetailsPage({ params }: { params: Promise<{ id: 
           type: dbData.property.type,
           location: `${dbData.property.city}, ${dbData.property.country}`,
           price: "Price upon request",
-          imageUrl: dbData.property.coverImageUrl || (dbData.rooms.length > 0 ? dbData.rooms[0].front : "/placeholder.jpg"),
+          imageUrl: dbData.property.coverImageUrl || (dbData.rooms.length > 0 ? dbData.rooms[0].front : "/uploads/rooms/placeholder.jpg"),
           description: dbData.property.description,
           host: dbData.host
         });

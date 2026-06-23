@@ -10,7 +10,7 @@ export default async function Home() {
     id: p.id,
     name: p.name,
     location: `${p.city}, ${p.country}`,
-    imageUrl: p.coverImageUrl || (p.rooms.length > 0 ? p.rooms[0].front : "/placeholder.jpg")
+    imageUrl: p.coverImageUrl || (p.rooms.length > 0 ? p.rooms[0].front : "/uploads/rooms/placeholder.jpg")
   }));
 
   return (

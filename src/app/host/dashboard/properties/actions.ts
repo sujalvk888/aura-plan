@@ -3,7 +3,7 @@
 import { redirect } from 'next/navigation';
 import { createProperty, updateProperty, deleteProperty } from '@/lib/db';
 import { getHostSession } from '@/lib/auth';
-
+import { uploadImageToCloudinary } from '@/lib/cloudinary';
 export async function addProperty(formData: FormData) {
   const host = await getHostSession();
   if (!host) redirect('/host/login');
@@ -16,7 +16,8 @@ export async function addProperty(formData: FormData) {
   const state = formData.get('state') as string;
   const country = formData.get('country') as string;
   
-  const coverImageUrl = formData.get('coverImageUrl') as string | null;
+  const coverImageFile = formData.get('coverImage') as File | null;
+  const coverImageUrl = await uploadImageToCloudinary(coverImageFile, 'aura-plan/properties');
 
   const newProperty = await createProperty({
     hostId: host.id,
@@ -27,7 +28,7 @@ export async function addProperty(formData: FormData) {
     city,
     state,
     country,
-    ...(coverImageUrl && { coverImageUrl })
+    coverImageUrl
   });
 
   redirect(`/host/dashboard/properties/${newProperty.id}/edit`);
@@ -54,7 +55,8 @@ export async function editProperty(id: string, formData: FormData) {
   const state = formData.get('state') as string;
   const country = formData.get('country') as string;
 
-  const coverImageUrl = formData.get('coverImageUrl') as string | null;
+  const coverImageFile = formData.get('coverImage') as File | null;
+  const coverImageUrl = await uploadImageToCloudinary(coverImageFile, 'aura-plan/properties');
 
   const updateData = {
     name,
@@ -84,7 +86,8 @@ export async function uploadCoverImage(id: string, formData: FormData) {
   const host = await getHostSession();
   if (!host) redirect('/host/login');
 
-  const coverImageUrl = formData.get('coverImageUrl') as string | null;
+  const file = formData.get('coverImage') as File | null;
+  const coverImageUrl = await uploadImageToCloudinary(file, 'aura-plan/properties');
 
   if (coverImageUrl) {
     await updateProperty(id, host.id, { coverImageUrl });

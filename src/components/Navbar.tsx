@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { getUserSession } from '@/lib/userAuth';
 import { User, Heart } from 'lucide-react';
-import MobileMenu from './public/MobileMenu';
 
 export default async function Navbar() {
   const user = await getUserSession();
@@ -64,9 +63,6 @@ export default async function Navbar() {
               </Link>
             </>
           )}
-          
-          {/* Mobile Navigation Toggle */}
-          <MobileMenu user={user} />
         </div>
       </div>
     </nav>

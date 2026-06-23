@@ -25,7 +25,7 @@ export default async function WishlistPage() {
     orderBy: { createdAt: 'desc' }
   });
 
-  const properties = wishlists.map(w => w.property);
+  const properties = wishlists.map((w: any) => w.property);
 
   return (
     <div className="min-h-[calc(100vh-80px)] bg-background py-16">
@@ -61,7 +61,7 @@ export default async function WishlistPage() {
                   title={property.name}
                   type={property.type}
                   location={`${property.city}, ${property.country}`}
-                  imageUrl={property.coverImageUrl || (property.rooms.length > 0 ? property.rooms[0].front : '/placeholder.jpg')}
+                  imageUrl={property.coverImageUrl || (property.rooms.length > 0 ? property.rooms[0].front : '/uploads/rooms/placeholder.jpg')}
                   isWishlisted={true} // It's in their wishlist
                 />
               </Link>

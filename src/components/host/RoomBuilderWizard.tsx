@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import { upload } from '@vercel/blob/client';
-import { ArrowRight, Save, Image as ImageIcon } from 'lucide-react';
+import { ArrowRight, Save, Image as ImageIcon, Box } from 'lucide-react';
 import DualViewRoom from '@/components/3d/DualViewRoom';
 import { addRoom, editRoom } from '@/app/host/dashboard/properties/[id]/rooms/actions';
 import { Room } from '@prisma/client';
@@ -41,63 +40,28 @@ export default function RoomBuilderWizard({ propertyId, roomId, initialRoom }: W
     floor: initialRoom?.floor || ''
   });
 
-  const [filesToUpload, setFilesToUpload] = useState<Record<string, File | null>>({
-    front: null, back: null, left: null, right: null, ceiling: null, floor: null
-  });
-
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>, surface: string) => {
     const file = e.target.files?.[0];
     if (file) {
       const url = URL.createObjectURL(file);
       setSurfacePreviews(prev => ({ ...prev, [surface]: url }));
-      setFilesToUpload(prev => ({ ...prev, [surface]: file }));
     }
   };
 
+  // Create bound action based on whether we are editing or adding
   const formAction = roomId 
     ? editRoom.bind(null, propertyId, roomId) 
     : addRoom.bind(null, propertyId);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    // Native form submission will trigger the server action
     setIsSubmitting(true);
-    
-    const formData = new FormData(e.currentTarget);
-    const surfaces = ['front', 'back', 'left', 'right', 'ceiling', 'floor'];
-    
-    try {
-      for (const surface of surfaces) {
-        const file = filesToUpload[surface];
-        if (file) {
-          const ext = file.name.split('.').pop() || 'png';
-          const filename = `rooms/${Date.now()}_${Math.random().toString(36).substring(2, 9)}.${ext}`;
-          
-          const newBlob = await upload(filename, file, {
-            access: 'public',
-            handleUploadUrl: '/api/upload',
-          });
-          
-          formData.set(`${surface}ImageUrl`, newBlob.url);
-        }
-        formData.delete(`${surface}Image`);
-      }
-      
-      await formAction(formData);
-    } catch (err) {
-      // Ignore NEXT_REDIRECT errors, but log others
-      if (!(err instanceof Error && err.message.includes('NEXT_REDIRECT'))) {
-        console.error('Upload failed:', err);
-        setIsSubmitting(false);
-      } else {
-        throw err; // Re-throw the redirect error so Next.js handles it
-      }
-    }
   };
 
   const currentViewHeight = dimensions.height > 0 ? (viewHeight.ft + (viewHeight.in / 12)) : 0;
 
   return (
-    <form onSubmit={handleSubmit} className={`flex flex-col gap-8 ${step >= 3 ? 'lg:flex-row h-[calc(100vh-140px)]' : 'items-center'}`}>
+    <form action={formAction} onSubmit={handleSubmit} className={`flex flex-col gap-8 ${step >= 3 ? 'lg:flex-row h-[calc(100vh-140px)]' : 'items-center'}`}>
       
       {/* Left Sidebar Form */}
       <div className={`w-full flex flex-col gap-6 ${step >= 3 ? 'h-full overflow-y-auto custom-scrollbar lg:w-1/3 pr-4' : 'max-w-2xl'}`}>

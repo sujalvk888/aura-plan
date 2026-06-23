@@ -3,7 +3,7 @@
 import { redirect } from 'next/navigation';
 import { createRoom } from '@/lib/db';
 import { getHostSession } from '@/lib/auth';
-
+import { uploadImageToCloudinary } from '@/lib/cloudinary';
 
 export async function addRoom(propertyId: string, formData: FormData) {
   const host = await getHostSession();
@@ -14,16 +14,27 @@ export async function addRoom(propertyId: string, formData: FormData) {
   const length = parseFloat(formData.get('length') as string);
   const height = parseFloat(formData.get('height') as string);
   
+  // Handle feet/inches for viewing height
   const viewHeightFt = parseFloat(formData.get('viewHeightFt') as string) || 5;
   const viewHeightIn = parseFloat(formData.get('viewHeightIn') as string) || 11;
-  const viewingHeight = viewHeightFt + (viewHeightIn / 12);
+  const viewingHeight = viewHeightFt + (viewHeightIn / 12); // Convert to decimal feet
 
-  const front = formData.get('frontImageUrl') as string;
-  const back = formData.get('backImageUrl') as string;
-  const left = formData.get('leftImageUrl') as string;
-  const right = formData.get('rightImageUrl') as string;
-  const ceiling = formData.get('ceilingImageUrl') as string;
-  const floor = formData.get('floorImageUrl') as string;
+  // Handle files
+  const frontFile = formData.get('frontImage') as File;
+  const backFile = formData.get('backImage') as File;
+  const leftFile = formData.get('leftImage') as File;
+  const rightFile = formData.get('rightImage') as File;
+  const ceilingFile = formData.get('ceilingImage') as File;
+  const floorFile = formData.get('floorImage') as File;
+
+  const [front, back, left, right, ceiling, floor] = await Promise.all([
+    uploadImageToCloudinary(frontFile, 'aura-plan/rooms').then(url => url || ''),
+    uploadImageToCloudinary(backFile, 'aura-plan/rooms').then(url => url || ''),
+    uploadImageToCloudinary(leftFile, 'aura-plan/rooms').then(url => url || ''),
+    uploadImageToCloudinary(rightFile, 'aura-plan/rooms').then(url => url || ''),
+    uploadImageToCloudinary(ceilingFile, 'aura-plan/rooms').then(url => url || ''),
+    uploadImageToCloudinary(floorFile, 'aura-plan/rooms').then(url => url || ''),
+  ]);
 
   await createRoom({
     propertyId,
@@ -56,27 +67,23 @@ export async function editRoom(propertyId: string, roomId: string, formData: For
   const viewHeightIn = parseFloat(formData.get('viewHeightIn') as string) || 11;
   const viewingHeight = viewHeightFt + (viewHeightIn / 12);
 
+  const frontFile = formData.get('frontImage') as File;
+  const backFile = formData.get('backImage') as File;
+  const leftFile = formData.get('leftImage') as File;
+  const rightFile = formData.get('rightImage') as File;
+  const ceilingFile = formData.get('ceilingImage') as File;
+  const floorFile = formData.get('floorImage') as File;
+
   const updates: import('@prisma/client').Prisma.RoomUpdateInput = {
     name, width, length, height, viewingHeight
   };
 
-  const frontUrl = formData.get('frontImageUrl') as string | null;
-  if (frontUrl) updates.front = frontUrl;
-
-  const backUrl = formData.get('backImageUrl') as string | null;
-  if (backUrl) updates.back = backUrl;
-
-  const leftUrl = formData.get('leftImageUrl') as string | null;
-  if (leftUrl) updates.left = leftUrl;
-
-  const rightUrl = formData.get('rightImageUrl') as string | null;
-  if (rightUrl) updates.right = rightUrl;
-
-  const ceilingUrl = formData.get('ceilingImageUrl') as string | null;
-  if (ceilingUrl) updates.ceiling = ceilingUrl;
-
-  const floorUrl = formData.get('floorImageUrl') as string | null;
-  if (floorUrl) updates.floor = floorUrl;
+  if (frontFile && frontFile.size > 0) updates.front = (await uploadImageToCloudinary(frontFile, 'aura-plan/rooms')) || '';
+  if (backFile && backFile.size > 0) updates.back = (await uploadImageToCloudinary(backFile, 'aura-plan/rooms')) || '';
+  if (leftFile && leftFile.size > 0) updates.left = (await uploadImageToCloudinary(leftFile, 'aura-plan/rooms')) || '';
+  if (rightFile && rightFile.size > 0) updates.right = (await uploadImageToCloudinary(rightFile, 'aura-plan/rooms')) || '';
+  if (ceilingFile && ceilingFile.size > 0) updates.ceiling = (await uploadImageToCloudinary(ceilingFile, 'aura-plan/rooms')) || '';
+  if (floorFile && floorFile.size > 0) updates.floor = (await uploadImageToCloudinary(floorFile, 'aura-plan/rooms')) || '';
 
   const { updateRoom } = await import('@/lib/db');
   await updateRoom(roomId, updates);

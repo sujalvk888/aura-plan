@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, Suspense, useRef } from 'react';
-import { upload } from '@vercel/blob/client';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { registerUser } from './actions';
@@ -9,47 +8,16 @@ import { ArrowLeft, Upload, User } from 'lucide-react';
 
 function RegisterForm() {
   const [error, setError] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [fileToUpload, setFileToUpload] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const searchParams = useSearchParams();
   const redirectUrl = searchParams.get('redirect');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setError(null);
-    
-    const formData = new FormData(e.currentTarget);
-    
-    try {
-      if (fileToUpload) {
-        const ext = fileToUpload.name.split('.').pop() || 'png';
-        const filename = `avatars/${Date.now()}-user-${Math.random().toString(36).substring(2, 9)}.${ext}`;
-        
-        const newBlob = await upload(filename, fileToUpload, {
-          access: 'public',
-          handleUploadUrl: '/api/upload',
-        });
-        
-        formData.set('avatarUrl', newBlob.url);
-      }
-      formData.delete('avatar');
-      
-      const result = await registerUser(formData, redirectUrl);
-      if (result?.error) {
-        setError(result.error);
-      }
-    } catch (err) {
-      if (!(err instanceof Error && err.message.includes('NEXT_REDIRECT'))) {
-        console.error('Upload failed:', err);
-        setError('An error occurred during registration.');
-      } else {
-        throw err;
-      }
+  const handleSubmit = async (formData: FormData) => {
+    const result = await registerUser(formData, redirectUrl);
+    if (result?.error) {
+      setError(result.error);
     }
-    setIsSubmitting(false);
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +25,6 @@ function RegisterForm() {
     if (file) {
       const url = URL.createObjectURL(file);
       setImagePreview(url);
-      setFileToUpload(file);
     }
   };
 
@@ -76,7 +43,7 @@ function RegisterForm() {
           </div>
         )}
         
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form action={handleSubmit} className="space-y-5">
           {/* Avatar Upload */}
           <div className="flex flex-col items-center justify-center mb-6">
             <div 
@@ -147,10 +114,9 @@ function RegisterForm() {
           
           <button 
             type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-primary hover:bg-primary-hover text-foreground py-3.5 rounded-xl font-medium transition-colors mt-2 shadow-lg shadow-primary/20 disabled:opacity-70 disabled:cursor-not-allowed"
+            className="w-full bg-primary hover:bg-primary-hover text-foreground py-3.5 rounded-xl font-medium transition-colors mt-2 shadow-lg shadow-primary/20"
           >
-            {isSubmitting ? 'Creating Account...' : 'Create Account'}
+            Create Account
           </button>
         </form>
         
