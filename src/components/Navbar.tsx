@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getUserSession } from '@/lib/userAuth';
 import { User, Heart } from 'lucide-react';
+import MobileNav from './MobileNav';
 
 export default async function Navbar() {
   const user = await getUserSession();
@@ -40,7 +41,7 @@ export default async function Navbar() {
               <Link href="/wishlist" className="hidden md:flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors">
                 <Heart size={18} /> <span className="text-sm font-medium">Wishlist</span>
               </Link>
-              <Link href="/profile" className="flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-full text-sm font-medium transition-colors">
+              <Link href="/profile" className="hidden md:flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-full text-sm font-medium transition-colors">
                 {user.avatarUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={user.avatarUrl} alt="Avatar" className="w-6 h-6 rounded-full object-cover" />
@@ -57,12 +58,15 @@ export default async function Navbar() {
               </Link>
               <Link 
                 href="/register" 
-                className="bg-primary hover:bg-primary-hover text-foreground px-6 py-2.5 rounded-full text-sm font-medium transition-all hover:scale-105 active:scale-95"
+                className="hidden md:flex bg-primary hover:bg-primary-hover text-foreground px-6 py-2.5 rounded-full text-sm font-medium transition-all hover:scale-105 active:scale-95"
               >
                 Sign Up
               </Link>
             </>
           )}
+
+          {/* Mobile Menu Toggle */}
+          <MobileNav user={user} />
         </div>
       </div>
     </nav>
