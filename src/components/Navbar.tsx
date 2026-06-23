@@ -65,6 +65,12 @@ export default async function Navbar() {
             </>
           )}
 
+          <div className="flex md:hidden items-center mr-2">
+            <Link href="/host" className="text-xs font-medium text-primary border border-primary/30 bg-primary/10 hover:bg-primary/20 px-3 py-1.5 rounded-full transition-colors">
+              Host Mode
+            </Link>
+          </div>
+
           <MobileNavMenu user={user} />
         </div>
       </div>

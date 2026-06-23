@@ -1,45 +1,50 @@
 'use client';
 
-import { useState } from 'react';
-import { Menu } from 'lucide-react';
 import Sidebar from './Sidebar';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { LayoutDashboard, Building, PlusSquare, Settings } from 'lucide-react';
 
 export default function DashboardClientLayout({ children }: { children: React.ReactNode }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const pathname = usePathname();
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const navItems = [
+    { href: '/host/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+    { href: '/host/dashboard/properties', icon: Building, label: 'Properties' },
+    { href: '/host/dashboard/properties/new', icon: PlusSquare, label: 'Add' },
+    { href: '/host/dashboard/settings', icon: Settings, label: 'Settings' },
+  ];
 
   return (
-    <div className="flex min-h-screen bg-background text-foreground font-sans relative">
-      {/* Mobile Header */}
-      <div className="md:hidden fixed top-0 left-0 right-0 h-16 bg-surface/90 backdrop-blur-md border-b border-white/5 z-40 flex items-center px-4">
-        <button onClick={toggleSidebar} className="p-2 text-foreground-muted hover:text-foreground">
-          <Menu size={24} />
-        </button>
-        <span className="ml-4 font-heading font-semibold tracking-wide text-foreground">
-          AuraPlan <span className="text-xs text-primary font-normal">HOST</span>
-        </span>
+    <div className="flex min-h-screen bg-background text-foreground font-sans relative pb-20 md:pb-0">
+      
+      {/* Sidebar for Desktop */}
+      <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 z-50">
+        <Sidebar />
       </div>
-
-      {/* Sidebar Container */}
-      <div 
-        className={`fixed md:static inset-y-0 left-0 z-50 transform transition-transform duration-300 md:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:flex`}
-      >
-        <Sidebar onMobileClose={() => setIsSidebarOpen(false)} />
-      </div>
-
-      {/* Mobile Overlay */}
-      {isSidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-background/80 backdrop-blur-sm z-40 md:hidden animate-in fade-in duration-300"
-          onClick={toggleSidebar}
-        />
-      )}
 
       {/* Main Content */}
-      <main className="flex-1 w-full pt-16 md:pt-0 min-w-0">
+      <main className="flex-1 w-full min-w-0 md:ml-64">
         {children}
       </main>
+
+      {/* Mobile Bottom Navigation */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 h-20 bg-surface/95 backdrop-blur-md border-t border-white/5 z-50 flex items-center justify-around px-2 pb-safe">
+        {navItems.map((item) => {
+          const isActive = pathname === item.href;
+          const Icon = item.icon;
+          return (
+            <Link 
+              key={item.href}
+              href={item.href} 
+              className={`flex flex-col items-center justify-center w-full h-full gap-1 transition-colors ${isActive ? 'text-primary' : 'text-foreground-muted hover:text-foreground'}`}
+            >
+              <Icon size={24} className={isActive ? 'animate-in zoom-in duration-300' : ''} />
+              <span className="text-[10px] font-medium tracking-wide">{item.label}</span>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }

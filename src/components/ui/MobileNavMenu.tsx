@@ -75,12 +75,6 @@ export default function MobileNavMenu({ user }: { user: any }) {
                 </div>
               )}
 
-              <hr className="border-white/5" />
-
-              {/* Host Section */}
-              <Link href="/host" onClick={toggleMenu} className="text-lg font-medium text-primary hover:text-primary-hover transition-colors">
-                Switch to Host
-              </Link>
             </div>
           </div>
         </div>
