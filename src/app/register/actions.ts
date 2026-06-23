@@ -25,7 +25,7 @@ export async function registerUser(formData: FormData, redirectUrl: string | nul
     return { error: "User already exists with this email" };
   }
 
-  let avatarUrl = avatarUrlParam || null;
+  const avatarUrl = avatarUrlParam || null;
 
   const user = await prisma.user.create({
     data: { name, email, password, avatarUrl }
