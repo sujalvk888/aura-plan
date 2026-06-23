@@ -13,16 +13,6 @@ export default async function Home() {
     imageUrl: p.coverImageUrl || (p.rooms.length > 0 ? p.rooms[0].front : "/uploads/rooms/placeholder.jpg")
   }));
 
-  // Duplicate properties to fill the 3-column grid for aesthetic purposes if needed
-  if (featuredProperties.length > 0 && featuredProperties.length < 3) {
-    while (featuredProperties.length < 3) {
-      featuredProperties.push({
-        ...featuredProperties[0],
-        id: `${featuredProperties[0].id}-${featuredProperties.length}`
-      });
-    }
-  }
-
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
@@ -62,7 +52,7 @@ export default async function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link 
               href="/properties" 
-              className="flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover text-[#1A120B] px-12 py-5 rounded-full text-lg font-semibold transition-all hover:scale-105 active:scale-95 shadow-xl shadow-primary/20"
+              className="flex items-center justify-center gap-3 bg-primary hover:bg-primary-hover text-[#FFF8E7] px-12 py-5 rounded-full text-lg font-semibold transition-all hover:scale-105 active:scale-95 shadow-xl shadow-primary/20"
             >
               Start Exploring <ArrowRight size={20} />
             </Link>
@@ -93,19 +83,19 @@ export default async function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                icon: <Compass className="text-primary mb-4" size={32} />,
+                icon: <Compass className="text-[#FFF8E7] mb-4" size={32} />,
                 title: "Navigate Freely",
                 description: "Move naturally from room to room. Understand the flow and connections of the entire property."
               },
               {
-                icon: <Eye className="text-primary mb-4" size={32} />,
+                icon: <Eye className="text-[#FFF8E7] mb-4" size={32} />,
                 title: "True Spatial Feel",
                 description: "Experience realistic proportions and lighting. See exactly how a space looks and feels."
               },
               {
-                icon: <Layers className="text-primary mb-4" size={32} />,
-                title: "Interactive Layouts",
-                description: "Jump instantly to any room using our intuitive floorplan and 3D layout maps."
+                icon: <Layers className="text-[#FFF8E7] mb-4" size={32} />,
+                title: "Detailed Property Information",
+                description: "Access comprehensive data about every property, from amenities and dimensions to neighborhood highlights."
               }
             ].map((feature, index) => (
               <div key={index} className="p-10 rounded-2xl bg-surface border border-white/5 hover:border-primary/30 transition-colors shadow-lg">

@@ -66,7 +66,7 @@ export default async function Navbar() {
           )}
 
           <div className="flex md:hidden items-center mr-2">
-            <Link href="/host" className="text-xs font-medium text-primary border border-primary/30 bg-primary/10 hover:bg-primary/20 px-3 py-1.5 rounded-full transition-colors">
+            <Link href="/host" className="text-xs font-medium text-[#FFF8E7] border border-[#FFF8E7]/30 bg-[#FFF8E7]/10 hover:bg-[#FFF8E7]/20 px-3 py-1.5 rounded-full transition-colors">
               Host Mode
             </Link>
           </div>

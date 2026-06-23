@@ -73,7 +73,7 @@ export default function PropertyCard({
       
       <div className="p-8 relative z-10 -mt-6">
         <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-1.5 text-sm text-primary font-medium bg-surface/80 backdrop-blur-md w-fit px-4 py-1.5 rounded-full border border-white/5">
+          <div className="flex items-center gap-1.5 text-sm text-[#FFF8E7] font-medium bg-surface/80 backdrop-blur-md w-fit px-4 py-1.5 rounded-full border border-white/5">
             <MapPin size={14} />
             {location}
           </div>
