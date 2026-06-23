@@ -37,10 +37,10 @@ export default function DashboardClientLayout({ children }: { children: React.Re
             <Link 
               key={item.href}
               href={item.href} 
-              className={`flex flex-col items-center justify-center w-full h-full gap-0.5 transition-colors ${isActive ? 'text-primary' : 'text-foreground-muted hover:text-foreground'}`}
+              className={`flex flex-col items-center justify-center w-full h-full px-[2px] py-[6px] gap-0.5 transition-colors ${isActive ? 'text-primary' : 'text-foreground-muted hover:text-foreground'}`}
             >
               <Icon size={20} className={isActive ? 'animate-in zoom-in duration-300' : ''} />
-              <span className="text-[11px] font-medium tracking-wide whitespace-nowrap overflow-hidden text-ellipsis max-w-[64px] text-center px-1">{item.label}</span>
+              <span className="text-[10px] tracking-[-0.2px] font-medium whitespace-nowrap overflow-hidden text-center">{item.label}</span>
             </Link>
           );
         })}

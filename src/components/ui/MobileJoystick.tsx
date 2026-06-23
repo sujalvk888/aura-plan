@@ -90,7 +90,7 @@ export default function MobileJoystick({ onChange }: MobileJoystickProps) {
   }, []);
 
   return (
-    <div className="absolute bottom-8 left-8 w-20 h-20 md:w-32 md:h-32 rounded-full bg-white/10 border-2 border-white/20 backdrop-blur-md flex items-center justify-center z-50 shadow-2xl">
+    <div className="absolute bottom-5 left-5 md:bottom-8 md:left-8 w-20 h-20 md:w-32 md:h-32 rounded-full bg-white/10 border-2 border-white/20 backdrop-blur-md flex items-center justify-center z-30 shadow-2xl">
       <div 
         ref={containerRef}
         className="absolute inset-0 rounded-full"

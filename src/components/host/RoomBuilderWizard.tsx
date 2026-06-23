@@ -184,7 +184,7 @@ export default function RoomBuilderWizard({ propertyId, roomId, initialRoom }: W
 
       {/* Right Side 3D Preview (Only visible in step 3) */}
       {step >= 3 && (
-        <div className="w-full lg:w-2/3 h-full">
+        <div className="w-full lg:w-2/3 aspect-[4/3] min-h-[280px] lg:h-full lg:aspect-auto lg:min-h-0 relative flex flex-col justify-center items-center">
           <DualViewRoom roomData={{
             width: dimensions.width,
             length: dimensions.length,
