@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { upload } from '@vercel/blob/client';
-import { ArrowRight, Save, Image as ImageIcon, Box } from 'lucide-react';
+import { ArrowRight, Save, Image as ImageIcon } from 'lucide-react';
 import DualViewRoom from '@/components/3d/DualViewRoom';
 import { addRoom, editRoom } from '@/app/host/dashboard/properties/[id]/rooms/actions';
 import { Room } from '@prisma/client';

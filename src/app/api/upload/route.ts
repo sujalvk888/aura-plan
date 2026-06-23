@@ -10,7 +10,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     const jsonResponse = await handleUpload({
       body,
       request,
-      onBeforeGenerateToken: async (pathname, clientPayload) => {
+      onBeforeGenerateToken: async () => {
         // For a production app we'd validate the request origin or session,
         // but since registration needs uploads before a session exists, we allow it.
         const host = await getHostSession();
@@ -21,7 +21,7 @@ export async function POST(request: Request): Promise<NextResponse> {
           tokenPayload: JSON.stringify({ userId: user?.id || host?.id || 'anonymous' }),
         };
       },
-      onUploadCompleted: async ({ blob, tokenPayload }) => {
+      onUploadCompleted: async ({ blob }) => {
         console.log('Upload completed:', blob.url);
       },
     });

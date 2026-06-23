@@ -1,5 +1,5 @@
 import NewPropertyForm from "./NewPropertyForm";
-import { ArrowLeft, Box } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 import { getHostSession } from "@/lib/auth";

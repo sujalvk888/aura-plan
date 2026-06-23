@@ -1,6 +1,6 @@
 import EditPropertyCoverForm from "./EditPropertyCoverForm";
-import { editProperty, togglePublish, uploadCoverImage } from "../../actions";
-import { Building, MapPin, AlignLeft, Image as ImageIcon, Save, ArrowLeft, Box, Upload, CheckCircle2, XCircle } from "lucide-react";
+import { editProperty, togglePublish } from "../../actions";
+import { ArrowLeft, Box, CheckCircle2, XCircle } from "lucide-react";
 import Link from "next/link";
 import { Property } from "@prisma/client";
 import { getHostSession } from "@/lib/auth";
