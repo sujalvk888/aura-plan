@@ -31,33 +31,33 @@ export default async function DashboardOverview() {
           </div>
           <div>
             <p className="text-foreground-muted text-sm font-medium mb-1">Total Properties</p>
-            <p className="text-3xl font-heading font-bold">{totalProperties}</p>
+            <p className="text-4xl font-heading font-bold text-[#FFF8E7]">{totalProperties}</p>
           </div>
         </div>
 
         <div className="bg-surface border border-white/5 p-6 rounded-2xl flex items-center gap-6">
-          <div className="w-14 h-14 rounded-xl bg-green-500/10 flex items-center justify-center text-green-500">
+          <div className="w-14 h-14 rounded-xl bg-green-500/20 flex items-center justify-center text-green-500">
             <Eye size={28} />
           </div>
           <div>
             <p className="text-foreground-muted text-sm font-medium mb-1">Published (Live)</p>
-            <p className="text-3xl font-heading font-bold">{publishedProperties}</p>
+            <p className="text-4xl font-heading font-bold text-[#FFF8E7]">{publishedProperties}</p>
           </div>
         </div>
 
         <div className="bg-surface border border-white/5 p-6 rounded-2xl flex items-center gap-6">
-          <div className="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500">
+          <div className="w-14 h-14 rounded-xl bg-orange-500/20 flex items-center justify-center text-orange-500">
             <PlusCircle size={28} />
           </div>
           <div>
             <p className="text-foreground-muted text-sm font-medium mb-1">Drafts</p>
-            <p className="text-3xl font-heading font-bold">{draftProperties}</p>
+            <p className="text-4xl font-heading font-bold text-[#FFF8E7]">{draftProperties}</p>
           </div>
         </div>
       </div>
 
       {/* Recent Properties Placeholder or List */}
-      <div className="bg-surface border border-white/5 rounded-2xl overflow-hidden">
+      <div className="bg-[#0D0A08] border border-white/[0.08] rounded-2xl overflow-hidden shadow-2xl">
         <div className="p-6 border-b border-white/5 flex items-center justify-between">
           <h2 className="text-xl font-heading font-semibold">Recent Properties</h2>
           <Link href="/host/dashboard/properties" className="text-sm text-primary hover:underline">
@@ -82,12 +82,12 @@ export default async function DashboardOverview() {
           ) : (
             <div className="space-y-4">
               {properties.slice(0, 3).map((prop: Property) => (
-                <div key={prop.id} className="flex items-center justify-between p-4 rounded-xl border border-white/5 hover:bg-white/5 transition-colors">
+                <div key={prop.id} className="flex items-center justify-between p-4 rounded-xl border border-white/5 hover:bg-white/5 transition-colors bg-surface">
                   <div>
-                    <h4 className="font-medium">{prop.name}</h4>
+                    <h4 className="font-medium text-[#FFF8E7]">{prop.name}</h4>
                     <p className="text-sm text-foreground-muted">{prop.address}, {prop.city}</p>
                   </div>
-                  <Link href={`/host/dashboard/properties`} className="px-4 py-2 bg-white/5 hover:bg-white/10 rounded-lg text-sm font-medium transition-colors">
+                  <Link href={`/host/dashboard/properties`} className="px-4 py-2 bg-transparent border border-[#FFF8E7] text-[#FFF8E7] hover:bg-white/5 rounded-lg text-sm font-medium transition-colors">
                     Manage
                   </Link>
                 </div>

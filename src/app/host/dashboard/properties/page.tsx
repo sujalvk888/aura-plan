@@ -14,14 +14,14 @@ export default async function PropertiesPage() {
 
   return (
     <div className="p-10 max-w-6xl mx-auto">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-10">
         <div>
           <h1 className="text-4xl font-heading font-bold mb-2">My Properties</h1>
           <p className="text-foreground-muted">Manage your virtual property portfolio.</p>
         </div>
         <Link 
           href="/host/dashboard/properties/new" 
-          className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-foreground px-6 py-3 rounded-xl font-medium transition-colors shadow-lg shadow-primary/20"
+          className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-[#FFF8E7] px-6 py-3 rounded-xl font-medium transition-colors shadow-lg shadow-primary/20 mt-1"
         >
           <PlusCircle size={18} /> Add New Property
         </Link>
@@ -52,7 +52,7 @@ export default async function PropertiesPage() {
                 ) : (
                   <Building className="text-foreground-muted/20" size={64} />
                 )}
-                <div className="absolute top-4 right-4 bg-surface/80 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-xs font-medium text-primary">
+                <div className="absolute top-4 right-4 bg-[#140F0A]/75 backdrop-blur-[4px] border border-white/10 px-3 py-1 rounded-full text-xs font-medium text-[#FFF8E7]">
                   {prop.type}
                 </div>
               </div>
@@ -61,19 +61,19 @@ export default async function PropertiesPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="font-heading text-xl font-semibold">{prop.name}</h3>
                     {prop.isPublished ? (
-                      <span className="text-[10px] font-bold uppercase tracking-wider bg-green-500/10 text-green-400 px-2 py-0.5 rounded-full border border-green-500/20">Published</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider bg-green-500/30 text-white px-2 py-0.5 rounded-full border border-green-500/20">Published</span>
                     ) : (
                       <span className="text-[10px] font-bold uppercase tracking-wider bg-white/5 text-white/50 px-2 py-0.5 rounded-full border border-white/10">Draft</span>
                     )}
                   </div>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs text-primary bg-primary/10 w-fit px-2 py-1 rounded mb-4">
+                <div className="flex items-center gap-1.5 text-xs text-[#E8E4DF] bg-white/5 w-fit px-3 py-1.5 rounded-full mb-4">
                   <MapPin size={12} />
                   {prop.city}, {prop.country}
                 </div>
-                <div className="flex items-center justify-end gap-2 pt-4 border-t border-white/5">
+                <div className="flex items-center justify-end gap-4 pt-4 border-t border-white/10">
                   {prop.isPublished && (
-                    <Link href={`/properties/${prop.id}`} target="_blank" className="p-2 text-primary hover:text-primary-hover hover:bg-primary/10 rounded-lg transition-colors mr-auto flex items-center gap-2" title="View Public Page">
+                    <Link href={`/properties/${prop.id}`} target="_blank" className="p-2 text-[#E8E4DF] hover:text-white hover:bg-white/10 rounded-lg transition-colors mr-auto flex items-center gap-2" title="View Public Page">
                       <Eye size={18} />
                       <span className="text-xs font-medium">View Live</span>
                     </Link>
@@ -85,7 +85,7 @@ export default async function PropertiesPage() {
                     'use server'
                     await removeProperty(prop.id)
                   }}>
-                    <button type="submit" className="p-2 text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors" title="Delete Property">
+                    <button type="submit" className="p-2 text-[#E07A5F] hover:text-[#E07A5F]/80 hover:bg-[#E07A5F]/10 rounded-lg transition-colors" title="Delete Property">
                       <Trash2 size={18} />
                     </button>
                   </form>
