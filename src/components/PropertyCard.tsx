@@ -60,7 +60,7 @@ export default function PropertyCard({
         />
       </button>
 
-      <div className="relative h-64 w-full overflow-hidden bg-surface">
+      <div className="relative h-80 w-full overflow-hidden">
         <Image 
           src={imageUrl} 
           alt={title} 
@@ -68,24 +68,25 @@ export default function PropertyCard({
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
       </div>
       
-      <div className="p-6 bg-surface">
+      <div className="p-8 relative z-10 -mt-6">
         <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-1.5 text-xs text-primary font-bold w-fit py-1">
+          <div className="flex items-center gap-1.5 text-sm text-primary font-medium bg-surface/80 backdrop-blur-md w-fit px-4 py-1.5 rounded-full border border-white/5">
             <MapPin size={14} />
             {location}
           </div>
-          <div className="text-xs text-white font-medium bg-white/10 px-3 py-1 rounded-full">
+          <div className="text-sm text-[#E8E4DF] font-medium bg-white/5 px-4 py-1.5 rounded-full">
             {type}
           </div>
         </div>
         
-        <h3 className="font-heading text-xl font-semibold text-white mb-6">
+        <h3 className="font-heading text-2xl font-semibold text-[#FFF8E7] mb-6 drop-shadow-md">
           {title}
         </h3>
         
-        <span className="w-full block text-center bg-primary/20 group-hover:bg-primary text-white group-hover:text-black py-3.5 rounded-xl text-sm font-bold transition-colors border border-primary/30 group-hover:border-primary">
+        <span className="w-full block text-center bg-primary/20 group-hover:bg-[#FFF8E7] text-[#FFF8E7] group-hover:text-[#1A120B] py-4 rounded-xl text-lg font-bold transition-all border border-primary/30 group-hover:border-[#FFF8E7] shadow-lg">
           View Details
         </span>
       </div>
