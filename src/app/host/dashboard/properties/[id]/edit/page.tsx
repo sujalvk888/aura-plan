@@ -1,3 +1,4 @@
+import EditPropertyCoverForm from "./EditPropertyCoverForm";
 import { editProperty, togglePublish, uploadCoverImage } from "../../actions";
 import { Building, MapPin, AlignLeft, Image as ImageIcon, Save, ArrowLeft, Box, Upload, CheckCircle2, XCircle } from "lucide-react";
 import Link from "next/link";
@@ -64,18 +65,7 @@ export default async function EditPropertyPage({ params }: { params: Promise<{ i
                   <span className="text-xs text-white/30">No Image</span>
                 )}
               </div>
-              <form action={uploadCoverImage.bind(null, id)} className="flex-1 space-y-4">
-                <input 
-                  type="file" 
-                  name="coverImage" 
-                  accept="image/jpeg, image/png, image/webp"
-                  className="block w-full text-sm text-foreground-muted file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20" 
-                  required
-                />
-                <button type="submit" className="bg-white/5 hover:bg-white/10 text-foreground px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
-                  <Upload size={16} /> Upload New Cover
-                </button>
-              </form>
+              <EditPropertyCoverForm propertyId={id} />
             </div>
           </div>
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react';
+import { upload } from '@vercel/blob/client';
 import { User, Upload, Loader2, CheckCircle2 } from 'lucide-react';
 import { updateProfile } from './actions';
 
@@ -17,6 +18,7 @@ export default function ProfileForm({ user }: ProfileFormProps) {
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(user.avatarUrl);
+  const [fileToUpload, setFileToUpload] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,6 +26,7 @@ export default function ProfileForm({ user }: ProfileFormProps) {
     if (file) {
       const url = URL.createObjectURL(file);
       setImagePreview(url);
+      setFileToUpload(file);
     }
   };
 
@@ -32,12 +35,31 @@ export default function ProfileForm({ user }: ProfileFormProps) {
     setError(null);
     setSuccess(null);
     
-    const result = await updateProfile(formData);
-    
-    if (result.error) {
-      setError(result.error);
-    } else if (result.success) {
-      setSuccess(result.message || "Profile updated successfully!");
+    try {
+      if (fileToUpload) {
+        const ext = fileToUpload.name.split('.').pop() || 'png';
+        const filename = `avatars/${Date.now()}-user-${Math.random().toString(36).substring(2, 9)}.${ext}`;
+        
+        const newBlob = await upload(filename, fileToUpload, {
+          access: 'public',
+          handleUploadUrl: '/api/upload',
+        });
+        
+        formData.set('avatarUrl', newBlob.url);
+      }
+      formData.delete('avatar');
+      
+      const result = await updateProfile(formData);
+      
+      if (result.error) {
+        setError(result.error);
+      } else if (result.success) {
+        setSuccess(result.message || "Profile updated successfully!");
+        setFileToUpload(null); // Reset after success
+      }
+    } catch (err) {
+      console.error('Upload failed:', err);
+      setError('An error occurred while uploading your avatar.');
     }
     
     setLoading(false);

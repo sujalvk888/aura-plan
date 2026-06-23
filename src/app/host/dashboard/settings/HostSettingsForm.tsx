@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import { upload } from '@vercel/blob/client';
 import { Camera, Save, Loader2, Check } from 'lucide-react';
 import { updateHostProfile } from './actions';
 
@@ -20,6 +21,7 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
   const [error, setError] = useState<string | null>(null);
   
   const [avatarPreview, setAvatarPreview] = useState<string | null>(host.avatarUrl);
+  const [fileToUpload, setFileToUpload] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageClick = () => {
@@ -31,6 +33,7 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
     if (file) {
       const url = URL.createObjectURL(file);
       setAvatarPreview(url);
+      setFileToUpload(file);
     }
   };
 
@@ -42,6 +45,20 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
 
     try {
       const formData = new FormData(e.currentTarget);
+      
+      if (fileToUpload) {
+        const ext = fileToUpload.name.split('.').pop() || 'png';
+        const filename = `avatars/${Date.now()}-host-${Math.random().toString(36).substring(2, 9)}.${ext}`;
+        
+        const newBlob = await upload(filename, fileToUpload, {
+          access: 'public',
+          handleUploadUrl: '/api/upload',
+        });
+        
+        formData.set('avatarUrl', newBlob.url);
+      }
+      formData.delete('avatar');
+      
       const result = await updateHostProfile(formData);
       
       if (result?.error) {
@@ -51,7 +68,11 @@ export default function HostSettingsForm({ host }: HostSettingsFormProps) {
         setTimeout(() => setSuccess(false), 3000);
       }
     } catch (err) {
-      setError("An unexpected error occurred. Please try again.");
+      if (!(err instanceof Error && err.message.includes('NEXT_REDIRECT'))) {
+        setError("An unexpected error occurred. Please try again.");
+      } else {
+        throw err;
+      }
     } finally {
       setIsPending(false);
     }

@@ -3,14 +3,6 @@
 import { redirect } from 'next/navigation';
 import { createProperty, updateProperty, deleteProperty } from '@/lib/db';
 import { getHostSession } from '@/lib/auth';
-import { put } from '@vercel/blob';
-
-async function processCoverImage(file: File | null): Promise<string | undefined> {
-  if (!file || file.size === 0) return undefined;
-  const fileName = `properties/${Date.now()}-property-${file.name.replace(/\s+/g, '-')}`;
-  const blob = await put(fileName, file, { access: 'public' });
-  return blob.url;
-}
 
 export async function addProperty(formData: FormData) {
   const host = await getHostSession();
@@ -24,8 +16,7 @@ export async function addProperty(formData: FormData) {
   const state = formData.get('state') as string;
   const country = formData.get('country') as string;
   
-  const coverImageFile = formData.get('coverImage') as File | null;
-  const coverImageUrl = await processCoverImage(coverImageFile);
+  const coverImageUrl = formData.get('coverImageUrl') as string | null;
 
   const newProperty = await createProperty({
     hostId: host.id,
@@ -36,7 +27,7 @@ export async function addProperty(formData: FormData) {
     city,
     state,
     country,
-    coverImageUrl
+    ...(coverImageUrl && { coverImageUrl })
   });
 
   redirect(`/host/dashboard/properties/${newProperty.id}/edit`);
@@ -63,8 +54,7 @@ export async function editProperty(id: string, formData: FormData) {
   const state = formData.get('state') as string;
   const country = formData.get('country') as string;
 
-  const coverImageFile = formData.get('coverImage') as File | null;
-  const coverImageUrl = await processCoverImage(coverImageFile);
+  const coverImageUrl = formData.get('coverImageUrl') as string | null;
 
   const updateData = {
     name,
@@ -94,8 +84,7 @@ export async function uploadCoverImage(id: string, formData: FormData) {
   const host = await getHostSession();
   if (!host) redirect('/host/login');
 
-  const file = formData.get('coverImage') as File | null;
-  const coverImageUrl = await processCoverImage(file);
+  const coverImageUrl = formData.get('coverImageUrl') as string | null;
 
   if (coverImageUrl) {
     await updateProperty(id, host.id, { coverImageUrl });

@@ -3,7 +3,7 @@
 import { prisma } from "@/lib/db";
 import { getUserSession } from "@/lib/userAuth";
 import { revalidatePath } from "next/cache";
-import { put } from '@vercel/blob';
+
 
 export async function updateProfile(formData: FormData) {
   const user = await getUserSession();
@@ -12,7 +12,7 @@ export async function updateProfile(formData: FormData) {
   }
 
   const name = formData.get('name') as string;
-  const avatarFile = formData.get('avatar') as File | null;
+  const avatarUrlParam = formData.get('avatarUrl') as string | null;
 
   if (!name || name.trim() === '') {
     return { error: "Name is required" };
@@ -20,10 +20,8 @@ export async function updateProfile(formData: FormData) {
 
   let avatarUrl = user.avatarUrl;
   
-  if (avatarFile && avatarFile.size > 0) {
-    const fileName = `${Date.now()}-${avatarFile.name.replace(/\s+/g, '-')}`;
-    const blob = await put(`avatars/${fileName}`, avatarFile, { access: 'public' });
-    avatarUrl = blob.url;
+  if (avatarUrlParam) {
+    avatarUrl = avatarUrlParam;
   }
 
   await prisma.user.update({

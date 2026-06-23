@@ -3,14 +3,14 @@
 import { prisma } from "@/lib/db";
 import { setUserSession } from "@/lib/userAuth";
 import { redirect } from "next/navigation";
-import { put } from '@vercel/blob';
+
 
 export async function registerUser(formData: FormData, redirectUrl: string | null) {
   const name = formData.get('name') as string;
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
   const confirmPassword = formData.get('confirmPassword') as string;
-  const avatarFile = formData.get('avatar') as File | null;
+  const avatarUrlParam = formData.get('avatarUrl') as string | null;
 
   if (!name || !email || !password) {
     return { error: "All fields are required" };
@@ -25,13 +25,7 @@ export async function registerUser(formData: FormData, redirectUrl: string | nul
     return { error: "User already exists with this email" };
   }
 
-  let avatarUrl = null;
-  
-  if (avatarFile && avatarFile.size > 0) {
-    const fileName = `${Date.now()}-${avatarFile.name.replace(/\s+/g, '-')}`;
-    const blob = await put(`avatars/${fileName}`, avatarFile, { access: 'public' });
-    avatarUrl = blob.url;
-  }
+  let avatarUrl = avatarUrlParam || null;
 
   const user = await prisma.user.create({
     data: { name, email, password, avatarUrl }
