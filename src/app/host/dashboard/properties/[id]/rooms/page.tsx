@@ -1,6 +1,6 @@
 import { getHostSession } from "@/lib/auth";
 import { getRoomsByProperty, deleteRoom } from "@/lib/db";
-import { Box, Plus, Settings, ArrowLeft, Image as ImageIcon, Trash2, PlusCircle } from "lucide-react";
+import { Box, ArrowLeft, Trash2, PlusCircle } from "lucide-react";
 import Link from "next/link";
 import { Room } from "@prisma/client";
 import { redirect } from "next/navigation";
