@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { logout } from '@/app/host/actions';
 import { LayoutDashboard, Building, PlusSquare, LogOut, Settings, X } from 'lucide-react';
@@ -16,8 +17,8 @@ export default function Sidebar({ onMobileClose }: SidebarProps) {
     <aside className="w-64 border-r border-white/5 bg-surface/95 backdrop-blur-md flex flex-col h-screen sticky top-0 shadow-2xl md:shadow-none">
       <div className="p-6 border-b border-white/5 flex items-center justify-between">
         <Link href="/host/dashboard" onClick={onMobileClose} className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary rounded flex items-center justify-center font-bold text-[#FFF8E7]">
-            A
+          <div className="flex items-center justify-center">
+            <Image src="/logo.png" alt="AuraPlan Logo" width={32} height={32} className="object-contain" />
           </div>
           <span className="text-xl font-heading font-semibold tracking-wide text-foreground">
             AuraPlan <span className="text-xs text-[#E8C39E] font-normal">HOST</span>

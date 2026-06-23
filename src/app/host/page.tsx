@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Building2, ArrowRight } from 'lucide-react';
 
 export const metadata = {
@@ -11,8 +12,8 @@ export default function HostLandingPage() {
       {/* Host Landing Navbar */}
       <header className="w-full h-20 flex items-center justify-between px-6 border-b border-white/5 bg-surface/30 backdrop-blur-md absolute top-0 left-0 right-0 z-50">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-primary rounded flex items-center justify-center font-bold text-[#FFF8E7]">
-            A
+          <div className="flex items-center justify-center">
+            <Image src="/logo.png" alt="AuraPlan Logo" width={32} height={32} className="object-contain" />
           </div>
           <span className="text-xl font-heading font-semibold tracking-wide text-foreground">
             AuraPlan <span className="text-[#E8C39E] ml-1">Host</span>

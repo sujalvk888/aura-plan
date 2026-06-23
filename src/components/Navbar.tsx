@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { getUserSession } from '@/lib/userAuth';
 import { User, Heart } from 'lucide-react';
 import MobileNavMenu from './ui/MobileNavMenu';
@@ -10,10 +11,9 @@ export default async function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          {/* Logo Placeholder */}
-          <div className="w-8 h-8 bg-primary rounded flex items-center justify-center font-bold text-foreground">
-            A
-          </div>
+          <Link href="/" className="flex items-center justify-center">
+            <Image src="/logo.png" alt="AuraPlan Logo" width={32} height={32} className="object-contain" />
+          </Link>
           <Link href="/" className="text-xl font-heading font-semibold tracking-wide text-foreground">
             AuraPlan
           </Link>
