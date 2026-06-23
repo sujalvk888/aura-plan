@@ -25,7 +25,7 @@ export default async function WishlistPage() {
     orderBy: { createdAt: 'desc' }
   });
 
-  const properties = wishlists.map((w: any) => w.property);
+  const properties = wishlists.map(w => w.property);
 
   return (
     <div className="min-h-[calc(100vh-80px)] bg-background py-16">

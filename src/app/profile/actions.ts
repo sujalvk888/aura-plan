@@ -19,7 +19,7 @@ export async function updateProfile(formData: FormData) {
     return { error: "Name is required" };
   }
 
-  const updateData: any = { name };
+  const updateData: { name: string; avatarUrl?: string } = { name };
   
   if (avatarFile && avatarFile.size > 0) {
     const avatarUrl = await uploadImageToCloudinary(avatarFile, 'aura-plan/avatars');
