@@ -24,7 +24,7 @@ export default function DualViewRoom({ roomData }: { roomData: RoomData }) {
   return (
     <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
       {/* Top Toggle Bar */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 bg-black/60 backdrop-blur-md border border-white/15 p-1.5 rounded-full flex gap-1 shadow-lg">
+      <div className="absolute top-6 md:top-4 left-1/2 -translate-x-1/2 z-10 bg-black/60 backdrop-blur-md border border-white/15 p-1.5 rounded-full flex gap-1 shadow-lg">
         <button
           type="button"
           onClick={() => setViewMode('interior')}
@@ -67,12 +67,12 @@ export default function DualViewRoom({ roomData }: { roomData: RoomData }) {
 
       {/* Overlay helpers */}
       {viewMode === 'interior' && (
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-block px-5 py-2 bg-black/75 border border-white/10 rounded-full text-[13px] text-[#FFF8E7] tracking-wider pointer-events-none">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-block px-4 md:px-5 py-2 bg-black/75 border border-white/10 rounded-full text-[11px] md:text-[13px] text-[#FFF8E7] tracking-wider pointer-events-none text-center whitespace-normal leading-snug w-[90%] md:w-auto max-w-[400px]">
           Click and drag to look around 360°
         </div>
       )}
       {viewMode === 'cube' && (
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-block px-5 py-2 bg-black/75 border border-white/10 rounded-full text-[13px] text-[#FFF8E7] tracking-wider pointer-events-none">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 inline-block px-4 md:px-5 py-2 bg-black/75 border border-white/10 rounded-full text-[11px] md:text-[13px] text-[#FFF8E7] tracking-wider pointer-events-none text-center whitespace-normal leading-snug w-[90%] md:w-auto max-w-[400px]">
           Click and drag to rotate the cube • Scroll to zoom
         </div>
       )}

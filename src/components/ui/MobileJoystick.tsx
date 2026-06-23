@@ -90,7 +90,7 @@ export default function MobileJoystick({ onChange }: MobileJoystickProps) {
   }, []);
 
   return (
-    <div className="absolute bottom-8 left-8 w-32 h-32 rounded-full bg-white/10 border-2 border-white/20 backdrop-blur-md flex items-center justify-center z-50 shadow-2xl">
+    <div className="absolute bottom-8 left-8 w-20 h-20 md:w-32 md:h-32 rounded-full bg-white/10 border-2 border-white/20 backdrop-blur-md flex items-center justify-center z-50 shadow-2xl">
       <div 
         ref={containerRef}
         className="absolute inset-0 rounded-full"
@@ -101,7 +101,7 @@ export default function MobileJoystick({ onChange }: MobileJoystickProps) {
       />
       {/* The Knob */}
       <div 
-        className="w-12 h-12 rounded-full bg-primary/80 shadow-[0_0_15px_rgba(var(--color-primary),0.5)] pointer-events-none transition-transform duration-75 ease-out"
+        className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-primary/80 shadow-[0_0_15px_rgba(var(--color-primary),0.5)] pointer-events-none transition-transform duration-75 ease-out"
         style={{ transform: `translate(${position.x}px, ${position.y}px)` }}
       />
     </div>

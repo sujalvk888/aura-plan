@@ -61,10 +61,10 @@ export default function RoomBuilderWizard({ propertyId, roomId, initialRoom }: W
   const currentViewHeight = dimensions.height > 0 ? (viewHeight.ft + (viewHeight.in / 12)) : 0;
 
   return (
-    <form action={formAction} onSubmit={handleSubmit} className={`flex flex-col gap-8 ${step >= 3 ? 'lg:flex-row h-[calc(100vh-140px)]' : 'items-center'}`}>
+    <form action={formAction} onSubmit={handleSubmit} className={`flex flex-col gap-8 ${step >= 3 ? 'lg:flex-row min-h-[auto] lg:h-[calc(100vh-140px)]' : 'items-center'}`}>
       
       {/* Left Sidebar Form */}
-      <div className={`w-full flex flex-col gap-6 ${step >= 3 ? 'h-full overflow-y-auto custom-scrollbar lg:w-1/3 pr-4' : 'max-w-2xl'}`}>
+      <div className={`w-full flex flex-col gap-6 ${step >= 3 ? 'h-auto lg:h-full overflow-y-auto custom-scrollbar lg:w-1/3 lg:pr-4 pt-4 lg:pt-0' : 'max-w-2xl'}`}>
         
         {/* Step 1: Dimensions */}
         <div className={`p-8 rounded-2xl border bg-surface border-primary/50 shadow-lg transition-colors w-full ${step !== 1 ? 'hidden' : ''}`}>

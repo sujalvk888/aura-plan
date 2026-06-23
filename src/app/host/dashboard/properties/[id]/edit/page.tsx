@@ -53,10 +53,10 @@ export default async function EditPropertyPage({ params }: { params: Promise<{ i
         <div className="space-y-8">
           
           {/* Cover Image Section */}
-          <div className="bg-surface border border-white/5 rounded-2xl p-8">
+          <div className="bg-surface border border-white/5 rounded-2xl p-4 md:p-8">
             <h2 className="text-xl font-heading font-semibold mb-6">Cover Image</h2>
-            <div className="flex gap-6 items-start">
-              <div className="w-48 h-32 bg-black rounded-lg overflow-hidden flex-shrink-0 border border-white/15 flex items-center justify-center relative">
+            <div className="flex flex-col md:flex-row gap-6 md:items-start">
+              <div className="w-full h-48 md:w-48 md:h-32 bg-black rounded-lg overflow-hidden flex-shrink-0 border border-white/15 flex items-center justify-center relative">
                 {property.coverImageUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={property.coverImageUrl} alt="Cover" className="w-full h-full object-cover" />
@@ -64,7 +64,7 @@ export default async function EditPropertyPage({ params }: { params: Promise<{ i
                   <span className="text-xs text-white/30">No Image</span>
                 )}
               </div>
-              <form action={uploadCoverImage.bind(null, id)} className="flex-1 space-y-4 flex flex-col items-start justify-center">
+              <form action={uploadCoverImage.bind(null, id)} className="flex-1 space-y-3 w-full flex flex-col md:items-start justify-center">
                 <input 
                   type="file" 
                   name="coverImage" 
@@ -72,14 +72,14 @@ export default async function EditPropertyPage({ params }: { params: Promise<{ i
                   className="block w-full text-sm text-[#FFF8E7]/60 file:mr-4 file:py-2.5 file:px-5 file:rounded-full file:border file:border-primary file:text-sm file:font-semibold file:bg-primary file:text-[#FFF8E7] hover:file:bg-primary-hover file:cursor-pointer transition-colors" 
                   required
                 />
-                <button type="submit" className="bg-primary hover:bg-primary-hover text-[#FFF8E7] px-6 py-2.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-lg">
+                <button type="submit" className="w-full md:w-auto justify-center bg-primary hover:bg-primary-hover text-[#FFF8E7] px-6 py-2.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-lg">
                   <Upload size={16} /> Upload New Cover
                 </button>
               </form>
             </div>
           </div>
 
-          <div className="bg-surface border border-white/5 rounded-2xl p-8">
+          <div className="bg-surface border border-white/5 rounded-2xl p-4 md:p-8">
             <h2 className="text-xl font-heading font-semibold mb-6">Basic Information</h2>
             
             <form action={updateAction} className="space-y-6">
@@ -127,7 +127,7 @@ export default async function EditPropertyPage({ params }: { params: Promise<{ i
               </div>
 
               <div className="pt-6 border-t border-white/5 mt-8 flex justify-end">
-                <button type="submit" className="bg-primary hover:bg-primary-hover text-[#FFF8E7] px-8 py-3.5 rounded-full font-bold transition-colors shadow-lg shadow-primary/20">
+                <button type="submit" className="w-full md:w-auto bg-primary hover:bg-primary-hover text-[#FFF8E7] px-8 py-3.5 rounded-full font-bold transition-colors shadow-lg shadow-primary/20">
                   Update Property Details
                 </button>
               </div>
