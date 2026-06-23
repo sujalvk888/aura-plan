@@ -3,13 +3,13 @@
 import { prisma } from "@/lib/db";
 import { getUserSession } from "@/lib/userAuth";
 import { revalidatePath } from "next/cache";
-import { writeFile } from 'fs/promises';
-import path from 'path';
+import { uploadImageToCloudinary } from '@/lib/cloudinary';
+import { redirect } from 'next/navigation';
 
 export async function updateProfile(formData: FormData) {
   const user = await getUserSession();
   if (!user) {
-    return { error: "Unauthorized" };
+    redirect('/login');
   }
 
   const name = formData.get('name') as string;
@@ -19,25 +19,18 @@ export async function updateProfile(formData: FormData) {
     return { error: "Name is required" };
   }
 
-  let avatarUrl = user.avatarUrl;
+  const updateData: any = { name };
   
   if (avatarFile && avatarFile.size > 0) {
-    const bytes = await avatarFile.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    const fileName = `${Date.now()}-${avatarFile.name.replace(/\s+/g, '-')}`;
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'avatars');
-    
-    // Create dir if not exists
-    await import('fs').then(fs => fs.promises.mkdir(uploadDir, { recursive: true }).catch(() => {}));
-    
-    const filePath = path.join(uploadDir, fileName);
-    await writeFile(filePath, buffer);
-    avatarUrl = `/uploads/avatars/${fileName}`;
+    const avatarUrl = await uploadImageToCloudinary(avatarFile, 'aura-plan/avatars');
+    if (avatarUrl) {
+      updateData.avatarUrl = avatarUrl;
+    }
   }
 
   await prisma.user.update({
     where: { id: user.id },
-    data: { name, avatarUrl }
+    data: updateData
   });
 
   revalidatePath('/profile');
