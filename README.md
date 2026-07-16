@@ -401,7 +401,7 @@ aura-plan/
 
 | Property Details | Wishlist |
 |------------------|----------|
-| ![Property Details](./assets/screenshots/property-details.png) | ![Wishlist](./assets/screenshots/wishlist.png) |
+| ![Property Details](/screenshots/property-details.png) | ![Wishlist](./assets/screenshots/wishlist.png) |
 
 ---
 
