@@ -403,22 +403,13 @@ Recommended screenshots to include:
 
 ---
 
-## 🎥 Demo GIFs
+## 🎬 Live Demo
 
-> **Demo recordings will be added soon.**
-
-Suggested demonstrations:
-
-- Host Registration
-- Property Creation
-- Room Builder Workflow
-- Texture Upload
-- First-Person Navigation
-- Mobile Joystick Controls
-- Room Teleportation
-- Exterior Cube Rotation
-- Publishing a Property
-- Complete Virtual Tour
+<p align="center">
+  <img src="./assets/gifs/demo.gif"
+       alt="Aura Plan demonstrating immersive 3D property visualization, virtual room navigation, first-person walkthroughs, interactive hotspots, and architectural exploration."
+       width="100%">
+</p>
 
 ---
 
