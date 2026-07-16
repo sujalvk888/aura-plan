@@ -381,28 +381,6 @@ aura-plan/
 └── tsconfig.json
 ```
 
----
-
-# 📸 Screenshots
-
-> **Screenshots will be added soon.**
-
-Recommended screenshots to include:
-
-- 🏠 Landing Page
-- 🔐 Login Page
-- 📝 Registration Page
-- 📊 Host Dashboard
-- 🏡 Property Builder
-- 📐 Room Configuration
-- 🖼️ Texture Upload Interface
-- 🎮 First-Person View
-- 🧱 Exterior Cube View
-- 📍 Hotspot Editor
-- 📱 Mobile Virtual Tour
-
----
-
 ## 🎬 Live Demo
 
 <p align="center">
@@ -410,6 +388,52 @@ Recommended screenshots to include:
        alt="Aura Plan demonstrating immersive 3D property visualization, virtual room navigation, first-person walkthroughs, interactive hotspots, and architectural exploration."
        width="100%">
 </p>
+
+---
+
+## 📸 Screenshots
+
+### 🌐 Public Platform
+
+| Home Page | Explore Properties |
+|-----------|-------------------|
+| ![Home](./screenshots/home.png) | ![Explore](./screenshots/explore.png) |
+
+| Property Details | Wishlist |
+|------------------|----------|
+| ![Property Details](./screenshots/property-details.png) | ![Wishlist](./screenshots/wishlist.png) |
+
+---
+
+### 🏠 Host Workspace
+
+| Dashboard | My Properties |
+|-----------|---------------|
+| ![Dashboard](./screenshots/dashboard.png) | ![My Properties](./screenshots/my-properties.png) |
+
+| Edit Property | Property Rooms |
+|--------------|----------------|
+| ![Edit Property](./screenshots/edit-property.png) | ![Property Rooms](./screenshots/property-rooms.png) |
+
+| Account Settings |
+|------------------|
+| ![Account Settings](./screenshots/account-settings.png) |
+
+---
+
+### 🛠️ 3D Room Builder
+
+| Step 1 — Room Dimensions | Step 2 — Surface Upload |
+|--------------------------|-------------------------|
+| ![Dimensions](./screenshots/room-dimensions.png) | ![Surfaces](./screenshots/room-surfaces.png) |
+
+| Interior Preview | Cube Validation |
+|------------------|-----------------|
+| ![Interior](./screenshots/interior-preview.png) | ![Cube](./screenshots/cube-preview.png) |
+
+| Review & Save |
+|--------------|
+| ![Review](./screenshots/review-save.png) |
 
 ---
 
