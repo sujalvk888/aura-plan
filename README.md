@@ -431,10 +431,6 @@ aura-plan/
 |------------------|-----------------|
 | ![Interior](./assets/screenshots/interior-preview.png) | ![Cube](./assets/screenshots/cube-preview.png) |
 
-| Review & Save |
-|--------------|
-| ![Review](./assets/screenshots/review-save.png) |
-
 ---
 
 # 🌐 Live Demo
