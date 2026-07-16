@@ -397,11 +397,11 @@ aura-plan/
 
 | Home Page | Explore Properties |
 |-----------|-------------------|
-| ![Home](./screenshots/home.png) | ![Explore](./screenshots/explore.png) |
+| ![Home](./assets/screenshots/home.png) | ![Explore](./assets/screenshots/explore.png) |
 
 | Property Details | Wishlist |
 |------------------|----------|
-| ![Property Details](./screenshots/property-details.png) | ![Wishlist](./screenshots/wishlist.png) |
+| ![Property Details](./assets/screenshots/property-details.png) | ![Wishlist](./assets/screenshots/wishlist.png) |
 
 ---
 
@@ -409,15 +409,15 @@ aura-plan/
 
 | Dashboard | My Properties |
 |-----------|---------------|
-| ![Dashboard](./screenshots/dashboard.png) | ![My Properties](./screenshots/my-properties.png) |
+| ![Dashboard](./assets/screenshots/dashboard.png) | ![My Properties](./assets/screenshots/my-properties.png) |
 
 | Edit Property | Property Rooms |
 |--------------|----------------|
-| ![Edit Property](./screenshots/edit-property.png) | ![Property Rooms](./screenshots/property-rooms.png) |
+| ![Edit Property](./assets/screenshots/edit-property.png) | ![Property Rooms](./assets/screenshots/property-rooms.png) |
 
 | Account Settings |
 |------------------|
-| ![Account Settings](./screenshots/account-settings.png) |
+| ![Account Settings](./assets/screenshots/account-settings.png) |
 
 ---
 
@@ -425,15 +425,15 @@ aura-plan/
 
 | Step 1 — Room Dimensions | Step 2 — Surface Upload |
 |--------------------------|-------------------------|
-| ![Dimensions](./screenshots/room-dimensions.png) | ![Surfaces](./screenshots/room-surfaces.png) |
+| ![Dimensions](./assets/screenshots/room-dimensions.png) | ![Surfaces](./assets/screenshots/room-surfaces.png) |
 
 | Interior Preview | Cube Validation |
 |------------------|-----------------|
-| ![Interior](./screenshots/interior-preview.png) | ![Cube](./screenshots/cube-preview.png) |
+| ![Interior](./assets/screenshots/interior-preview.png) | ![Cube](./assets/screenshots/cube-preview.png) |
 
 | Review & Save |
 |--------------|
-| ![Review](./screenshots/review-save.png) |
+| ![Review](./assets/screenshots/review-save.png) |
 
 ---
 
